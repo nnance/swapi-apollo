@@ -1,7 +1,11 @@
 export default {
   RootQuery: {
-    allFilms: (after: string, first: number, before: string, last: number) => [],
-    film: (id: number, filmID: number) => ({}),
+    allFilms(params, _, context) {
+      return context.film.getFilms(params.after, params.first, params.before, params.last)
+    },
+    film(params, _, context) {
+      return context.film.getFilm(params.id, params.filmID)
+    },
     allPeople: (after: string, first: number, before: string, last: number) => [],
     person: (id: number, personID: number) => ({}),
     allPlanets: (after: string, first: number, before: string, last: number) => [],
