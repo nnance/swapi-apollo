@@ -9,9 +9,9 @@ import vehicle from './vehicle'
 
 
 const schema = `
-schema {
-  query: RootQuery
-}
+  schema {
+    query: RootQuery
+  }
 `
 
 export default [

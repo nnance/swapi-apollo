@@ -2,6 +2,37 @@ export function allStarships(after: string, first: number, before: string, last:
   return []
 }
 
-export function starship(id: number, starshipID: number) {
+export function getStarship(id: number, starshipID: number) {
   return {}
+}
+
+export default {
+  Starship: {
+    pilotConnection: () => ({}),
+    filmConnection: () => ({}),
+  },
+  StarshipPilotsConnection: {
+    pageInfo: () => ({}),
+    edges: () => [],
+    pilots: () => [],
+  },
+  StarshipPilotsEdge: {
+    node: () => ({}),
+  },
+  StarshipFilmsConnection: {
+    pageInfo: () => ({}),
+    edges: () => [],
+    films: () => [],
+  },
+  StarshipFilmsEdge: {
+    node: () => ({}),
+  },
+  StarshipsConnection: {
+    pageInfo: () => ({}),
+    edges: () => [],
+    starships: () => [],
+  },
+  StarshipsEdge: {
+    node: () => ({}),
+  },
 }

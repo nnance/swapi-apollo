@@ -2,6 +2,37 @@ export function allPlanets(after: string, first: number, before: string, last: n
   return []
 }
 
-export function planet(id: number, planetID: number) {
+export function getPlanet(id: number, planetID: number) {
   return {}
+}
+
+export default {
+  Planet: {
+    residentConnection: () => ({}),
+    filmConnection: () => ({}),
+  },
+  PlanetResidentsConnection: {
+    pageInfo: () => ({}),
+    edges: () => [],
+    residents: () => [],
+  },
+  PlanetResidentsEdge: {
+    node: () => ({}),
+  },
+  PlanetFilmsConnection: {
+    pageInfo: () => ({}),
+    edges: () => [],
+    films: () => [],
+  },
+  PlanetFilmsEdge: {
+    node: () => ({}),
+  },
+  PlanetsConnection: {
+    pageInfo: () => ({}),
+    edges: () => [],
+    planets: () => [],
+  },
+  PlanetsEdge: {
+    node: () => ({}),
+  },
 }

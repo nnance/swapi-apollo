@@ -2,6 +2,37 @@ export function allVehicles(after: string, first: number, before: string, last: 
   return []
 }
 
-export function vehicle(id: number, vehicleID: number) {
+export function getVehicle(id: number, vehicleID: number) {
   return {}
+}
+
+export default {
+  Vehicle: {
+    pilotConnection: () => ({}),
+    filmConnection: () => ({}),
+  },
+  VehiclePilotsConnection: {
+    pageInfo: () => ({}),
+    edges: () => [],
+    pilots: () => [],
+  },
+  VehiclePilotsEdge: {
+    node: () => ({}),
+  },
+  VehicleFilmsConnection: {
+    pageInfo: () => ({}),
+    edges: () => [],
+    films: () => [],
+  },
+  VehicleFilmsEdge: {
+    node: () => ({}),
+  },
+  VehiclesConnection: {
+    pageInfo: () => ({}),
+    edges: () => [],
+    vehicles: () => [],
+  },
+  VehiclesEdge: {
+    node: () => ({}),
+  },
 }
