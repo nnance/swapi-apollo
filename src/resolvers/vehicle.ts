@@ -1,11 +1,3 @@
-export function allVehicles(after: string, first: number, before: string, last: number) {
-  return []
-}
-
-export function getVehicle(id: number, vehicleID: number) {
-  return {}
-}
-
 export default {
   Vehicle: {
     pilotConnection: () => ({}),

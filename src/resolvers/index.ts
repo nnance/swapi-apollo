@@ -1,26 +1,9 @@
-import film, {allFilms, getFilm} from './film'
-import people, {allPeople, person} from './people'
-import planet, {allPlanets, getPlanet} from './planet'
-import species, {allSpecies, getSpecies} from './species'
-import starship, {allStarships, getStarship} from './starship'
-import vehicle, {allVehicles, getVehicle} from './vehicle'
-
-const rootQuery = {
-  RootQuery: {
-    allFilms,
-    film: getFilm,
-    allPeople,
-    person,
-    allPlanets,
-    planet: getPlanet,
-    allSpecies,
-    species: getSpecies,
-    allStarships,
-    starship: getStarship,
-    allVehicles,
-    vehicle: getVehicle,
-    node: () => ({}),
-  },
-}
+import rootQuery from './root'
+import film from './film'
+import people from './people'
+import planet from './planet'
+import species from './species'
+import starship from './starship'
+import vehicle from './vehicle'
 
 export default Object.assign(rootQuery, film, people, planet, species, starship, vehicle);

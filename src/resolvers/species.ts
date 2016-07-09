@@ -1,11 +1,3 @@
-export function allSpecies(after: string, first: number, before: string, last: number) {
-  return []
-}
-
-export function getSpecies(id: number, speciesID: number) {
-  return {}
-}
-
 export default {
   Species: {
     homeworld: () => ({}),

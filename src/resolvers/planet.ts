@@ -1,11 +1,3 @@
-export function allPlanets(after: string, first: number, before: string, last: number) {
-  return []
-}
-
-export function getPlanet(id: number, planetID: number) {
-  return {}
-}
-
 export default {
   Planet: {
     residentConnection: () => ({}),

@@ -1,11 +1,3 @@
-export function allFilms(after: string, first: number, before: string, last: number) {
-  return []
-}
-
-export function getFilm(id: number, filmID: number) {
-  return {}
-}
-
 export default {
   FilmsConnection: {
     pageInfo: () => ({}),
