@@ -15,7 +15,9 @@ export default {
     allStarships: (after: string, first: number, before: string, last: number) => [],
     starship: (id: number, starshipID: number) => ({}),
     allVehicles: (after: string, first: number, before: string, last: number) => [],
-    vehicle: (id: number, vehicleID: number) => ({}),
+    vehicle(_, params, context) {
+      return context.vehicle.getVehicle(params.id, params.vehicleID)
+    },
     node: (id: number) => ({}),
   },
 }
