@@ -1,30 +1,10 @@
 export default {
   Vehicle: {
-    pilotConnection: () => ({}),
-    filmConnection: () => ({}),
-  },
-  VehiclePilotsConnection: {
-    pageInfo: () => ({}),
-    edges: () => [],
-    pilots: () => [],
-  },
-  VehiclePilotsEdge: {
-    node: () => ({}),
-  },
-  VehicleFilmsConnection: {
-    pageInfo: () => ({}),
-    edges: () => [],
-    films: () => [],
-  },
-  VehicleFilmsEdge: {
-    node: () => ({}),
-  },
-  VehiclesConnection: {
-    pageInfo: () => ({}),
-    edges: () => [],
-    vehicles: () => [],
-  },
-  VehiclesEdge: {
-    node: () => ({}),
+    costInCredits: (vehicle) => vehicle.cost_in_credits,
+    maxAtmospheringSpeed: (vehicle) => vehicle.max_atmosphering_speed,
+    cargoCapacity: (vehicle) => vehicle.cargo_capacity,
+    vehicleClass: (vehicle) => vehicle.vehicle_class,
+    pilots: (vehicle, _, context) => context.people.getConnections(vehicle.pilots),
+    films: (vehicle, _, context) => context.film.getConnections(vehicle.films),
   },
 }

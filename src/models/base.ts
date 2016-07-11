@@ -10,4 +10,7 @@ export default class BaseModel {
   public getConnections(urls: Array<string>) {
     return urls.map(url => this.connector.fetch(url))
   }
+  public getConnection(url: string) {
+    return this.connector.fetch(url)
+  }
 }

@@ -12,46 +12,10 @@ type Vehicle implements Node {
   maxAtmospheringSpeed: Int
   cargoCapacity: Int
   consumables: String
-  pilotConnection(after: String, first: Int, before: String, last: Int): VehiclePilotsConnection
-  filmConnection(after: String, first: Int, before: String, last: Int): VehicleFilmsConnection
+  pilots: [Person]
+  films: [Film]
   created: String
   edited: String
   id: ID!
-}
-
-type VehicleFilmsConnection {
-  pageInfo: PageInfo!
-  edges: [VehicleFilmsEdge]
-  totalCount: Int
-  films: [Film]
-}
-
-type VehicleFilmsEdge {
-  node: Film
-  cursor: String!
-}
-
-type VehiclePilotsConnection {
-  pageInfo: PageInfo!
-  edges: [VehiclePilotsEdge]
-  totalCount: Int
-  pilots: [Person]
-}
-
-type VehiclePilotsEdge {
-  node: Person
-  cursor: String!
-}
-
-type VehiclesConnection {
-  pageInfo: PageInfo!
-  edges: [VehiclesEdge]
-  totalCount: Int
-  vehicles: [Vehicle]
-}
-
-type VehiclesEdge {
-  node: Vehicle
-  cursor: String!
 }
 `

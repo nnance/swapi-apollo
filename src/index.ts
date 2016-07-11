@@ -8,6 +8,9 @@ import SWAPIConnector from './connector'
 import FilmModel from './models/film'
 import PeopleModel from './models/people'
 import VehicleModel from './models/vehicle'
+import PlanetModel from './models/planet'
+import StarshipModel from './models/starship'
+import SpeciesModel from './models/species'
 
 const port = 3000
 const app = express()
@@ -25,6 +28,9 @@ app.use('/graphql', apollo.apolloServer((req) => {
           film: new FilmModel(swapiConnector),
           vehicle: new VehicleModel(swapiConnector),
           people: new PeopleModel(swapiConnector),
+          planet: new PlanetModel(swapiConnector),
+          starship: new StarshipModel(swapiConnector),
+          species: new SpeciesModel(swapiConnector),
       },
   }
 }))

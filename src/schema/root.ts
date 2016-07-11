@@ -1,17 +1,17 @@
 export default `
 
 type RootQuery {
-  allFilms(after: String, first: Int, before: String, last: Int): [Film]
+  allFilms: [Film]
   film(id: ID, filmID: ID): Film
-  allPeople(after: String, first: Int, before: String, last: Int): [Person]
+  allPeople: [Person]
   person(id: ID, personID: ID): Person
-  allPlanets(after: String, first: Int, before: String, last: Int): PlanetsConnection
+  allPlanets: [Planet]
   planet(id: ID, planetID: ID): Planet
-  allSpecies(after: String, first: Int, before: String, last: Int): SpeciesConnection
+  allSpecies: [Species]
   species(id: ID, speciesID: ID): Species
-  allStarships(after: String, first: Int, before: String, last: Int): StarshipsConnection
+  allStarships: [Starship]
   starship(id: ID, starshipID: ID): Starship
-  allVehicles(after: String, first: Int, before: String, last: Int): [Vehicle]
+  allVehicles: [Vehicle]
   vehicle(id: ID, vehicleID: ID): Vehicle
   node(id: ID!): Node
 }

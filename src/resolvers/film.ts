@@ -1,57 +1,13 @@
 export default {
-  FilmsConnection: {
-    pageInfo: () => ({}),
-    edges: () => [],
-    films: () => [],
-  },
-  FilmsEdge: {
-    node: () => ({}),
-  },
   Film: {
-    speciesConnection: () => ({}),
-    starshipConnection: () => ({}),
-    vehicles: (params, _, context) => context.vehicle.getConnections(params.vehicles),
-    characters: (params, _, context) => context.vehicle.getConnections(params.characters),
-    planetConnection: () => ({}),
-  },
-  FilmSpeciesConnection: {
-    pageInfo: () => ({}),
-    edges: () => [],
-    species: () => [],
-  },
-  FilmSpeciesEdge: {
-    node: () => ({}),
-  },
-  FilmStarshipsConnection: {
-    pageInfo: () => ({}),
-    edges: () => [],
-    starships: () => [],
-  },
-  FilmStarshipsEdge: {
-    node: () => ({}),
-  },
-  FilmVehiclesConnection: {
-    pageInfo: () => ({}),
-    edges: () => [],
-    vehicles: () => [],
-  },
-  FilmVehiclesEdge: {
-    node: () => ({}),
-  },
-  FilmCharactersConnection: {
-    pageInfo: () => ({}),
-    edges: () => [],
-    characters: () => [],
-  },
-  FilmCharactersEdge: {
-    node: () => ({}),
-  },
-  FilmPlanetsConnection: {
-    pageInfo: () => ({}),
-    edges: () => [],
-    planets: () => [],
-  },
-  FilmPlanetsEdge: {
-    node: () => ({}),
+    id: (film) => film.url,
+    episodeID: (film) => film.episode_id,
+    openingCrawl: (film) => film.opening_crawl,
+    releaseDate: (film) => film.release_date,
+    species: (film, _, context) => context.species.getConnections(film.species),
+    starships: (film, _, context) => context.starship.getConnections(film.starships),
+    vehicles: (film, _, context) => context.vehicle.getConnections(film.vehicles),
+    characters: (film, _, context) => context.people.getConnections(film.characters),
+    planets: (film, _, context) => context.planet.getConnections(film.planets),
   },
 }
