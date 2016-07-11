@@ -7,7 +7,8 @@
     "build": "tsc",
     "start": "npm run build && node ./dist/index.js",
     "dev": "nodemon ./dist/index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "postinstall": "typings i"
   },
   "keywords": [
     "Apollo-Stack",
