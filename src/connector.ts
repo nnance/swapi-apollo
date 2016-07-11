@@ -3,8 +3,8 @@ import * as request from 'request'
 
 export interface PaginationResult {
   count?: number;
-  next?: string | null;
-  previous?: string | null;
+  next?: string;
+  previous?: string;
   results: Array<{}>
 }
 
