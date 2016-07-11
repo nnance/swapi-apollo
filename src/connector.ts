@@ -1,5 +1,13 @@
 import * as request from 'request'
 
+
+export interface PaginationResult {
+  count?: number;
+  next?: string | null;
+  previous?: string | null;
+  results: Array<{}>
+}
+
 export default class SWAPIConnector {
   private rootURL: string
 
@@ -8,20 +16,35 @@ export default class SWAPIConnector {
   }
 
   public fetch(resource: string) {
-    return [];
-  }
+    const url = resource.indexOf(this.rootURL) === 0 ? resource : this.rootURL + resource
 
-  public get(resource: string) {
-    const url = this.rootURL + resource
-
-    return new Promise((resolve, reject) => {
+    return new Promise<PaginationResult | any>((resolve, reject) => {
       request.get(url, (err, resp, body) => {
         if (err) {
           reject(err)
         } else {
-          resolve(JSON.parse(body));
+          const data = JSON.parse(body)
+          if (data.next) {
+            this.pagination(data.next, resolve, data.results)
+          } else if (data.results) {
+            resolve(data.results)
+          }else {
+            resolve(data)
+          }
         }
       })
     })
+  }
+
+  private pagination(next: string, resolve, results) {
+    this.fetch(next)
+      .then((data) => {
+        results = results.concat(data.results)
+        if (data.next) {
+          this.pagination(data.next, resolve, results)
+        } else {
+          resolve(results)
+        }
+      })
   }
 }
