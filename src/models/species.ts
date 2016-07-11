@@ -6,7 +6,8 @@ export default class Species extends BaseModel {
     return this.connector.fetch('/species/')
   }
 
-  public getSpecies(id: number, starshipID: number) {
-    return this.connector.fetch(`/species/${id}/`)
+  public getSpecies(id: string, speciesID: number) {
+    const url = id || `/species/${speciesID}`
+    return this.connector.fetch(url)
   }
 }

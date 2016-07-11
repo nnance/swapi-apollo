@@ -6,7 +6,8 @@ export default class Starship extends BaseModel {
     return this.connector.fetch('/startships/')
   }
 
-  public getStarship(id: number, starshipID: number) {
-    return this.connector.fetch(`/startships/${id}/`)
+  public getStarship(id: string, starshipID: number) {
+    const url = id || `/startships/${starshipID}`
+    return this.connector.fetch(url)
   }
 }

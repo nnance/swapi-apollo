@@ -1,5 +1,6 @@
 export default {
   Species: {
+    id: (species) => species.url,
     averageHeight: (species) => species.average_height,
     skinColors: (species) => species.skin_colors.split(','),
     hairColors: (species) => species.hair_colors.split(','),

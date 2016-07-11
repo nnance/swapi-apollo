@@ -6,7 +6,8 @@ export default class Vehicle extends BaseModel {
     return this.connector.fetch('/vehicles/')
   }
 
-  public getVehicle(id: number, vehicleID: number) {
-    return this.connector.fetch(`/vehicles/${id}/`)
+  public getVehicle(id: string, vehicleID: number) {
+    const url = id || `/vehicles/${vehicleID}`
+    return this.connector.fetch(url)
   }
 }

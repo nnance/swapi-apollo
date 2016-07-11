@@ -1,5 +1,6 @@
 export default {
   Starship: {
+    id: (starship) => starship.url,
     costInCredits: (starship) => starship.cost_in_credits,
     maxAtmospheringSpeed: (starship) => starship.max_atmosphering_speed,
     cargoCapacity: (starship) => starship.cargo_capacity,

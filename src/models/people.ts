@@ -6,7 +6,8 @@ export default class People extends BaseModel {
     return this.connector.fetch('/people/')
   }
 
-  public getPeople(id: number, personID: number) {
-    return this.connector.fetch(`/people/${id}/`)
+  public getPeople(id: string, personID: number) {
+    const url = id || `/people/${personID}`
+    return this.connector.fetch(url)
   }
 }
