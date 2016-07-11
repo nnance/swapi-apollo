@@ -10,8 +10,8 @@ export default {
   Film: {
     speciesConnection: () => ({}),
     starshipConnection: () => ({}),
-    vehicleConnection: () => ({}),
-    characterConnection: () => ({}),
+    vehicles: (params, _, context) => context.vehicle.getConnections(params.vehicles),
+    characters: (params, _, context) => context.vehicle.getConnections(params.characters),
     planetConnection: () => ({}),
   },
   FilmSpeciesConnection: {

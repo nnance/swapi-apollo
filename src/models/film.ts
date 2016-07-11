@@ -7,6 +7,6 @@ export default class Film extends BaseModel {
   }
 
   public getFilm(id: number, filmID: number) {
-    return this.connector.fetch(`/films/${id}`);
+    return this.connector.fetch(`/films/${id}`)
   }
 }

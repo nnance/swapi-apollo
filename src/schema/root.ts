@@ -3,7 +3,7 @@ export default `
 type RootQuery {
   allFilms(after: String, first: Int, before: String, last: Int): [Film]
   film(id: ID, filmID: ID): Film
-  allPeople(after: String, first: Int, before: String, last: Int): PeopleConnection
+  allPeople(after: String, first: Int, before: String, last: Int): [Person]
   person(id: ID, personID: ID): Person
   allPlanets(after: String, first: Int, before: String, last: Int): PlanetsConnection
   planet(id: ID, planetID: ID): Planet

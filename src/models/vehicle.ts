@@ -9,5 +9,4 @@ export default class Vehicle extends BaseModel {
   public getVehicle(id: number, vehicleID: number) {
     return this.connector.fetch(`/vehicles/${id}/`)
   }
-
 }

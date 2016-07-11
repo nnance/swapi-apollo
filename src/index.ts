@@ -6,6 +6,7 @@ import schema from './schema/index'
 import resolvers from './resolvers/index'
 import SWAPIConnector from './connector'
 import FilmModel from './models/film'
+import PeopleModel from './models/people'
 import VehicleModel from './models/vehicle'
 
 const port = 3000
@@ -23,6 +24,7 @@ app.use('/graphql', apollo.apolloServer((req) => {
       context: {
           film: new FilmModel(swapiConnector),
           vehicle: new VehicleModel(swapiConnector),
+          people: new PeopleModel(swapiConnector),
       },
   }
 }))

@@ -6,4 +6,8 @@ export default class BaseModel {
   constructor(connector) {
     this.connector = connector;
   }
+
+  public getConnections(urls: Array<string>) {
+    return urls.map(url => this.connector.fetch(url))
+  }
 }

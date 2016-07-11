@@ -9,8 +9,8 @@ type Film implements Node {
   releaseDate: String
   speciesConnection(after: String, first: Int, before: String, last: Int): FilmSpeciesConnection
   starshipConnection(after: String, first: Int, before: String, last: Int): FilmStarshipsConnection
-  vehicleConnection(after: String, first: Int, before: String, last: Int): FilmVehiclesConnection
-  characterConnection(after: String, first: Int, before: String, last: Int): FilmCharactersConnection
+  vehicles(after: String, first: Int, before: String, last: Int): [Vehicle]
+  characters(after: String, first: Int, before: String, last: Int): [Person]
   planetConnection(after: String, first: Int, before: String, last: Int): FilmPlanetsConnection
   created: String
   edited: String
