@@ -2,8 +2,8 @@ import BaseModel from './base'
 
 export default class Species extends BaseModel {
 
-  public getAllSpecies(after?: string, first?: number, before?: string, last?: number) {
-    return this.connector.fetchPage('/species/', after, first, before, last)
+  public getAllSpecies(offset?: number, limit?: number) {
+    return this.connector.fetchPage('/species/', offset, limit)
   }
 
   public getSpecies(id: string, speciesID: number) {

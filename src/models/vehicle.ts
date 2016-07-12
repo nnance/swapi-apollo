@@ -2,8 +2,8 @@ import BaseModel from './base'
 
 export default class Vehicle extends BaseModel {
 
-  public getVehicles(after?: string, first?: number, before?: string, last?: number) {
-    return this.connector.fetchPage('/vehicles/', after, first, before, last)
+  public getVehicles(offset?: number, limit?: number) {
+    return this.connector.fetchPage('/vehicles/', offset, limit)
   }
 
   public getVehicle(id: string, vehicleID: number) {

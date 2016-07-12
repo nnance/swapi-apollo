@@ -2,8 +2,8 @@ import BaseModel from './base'
 
 export default class People extends BaseModel {
 
-  public getPeoples(after?: string, first?: number, before?: string, last?: number) {
-    return this.connector.fetchPage('/people/', after, first, before, last)
+  public getPeoples(offset?: number, limit?: number) {
+    return this.connector.fetchPage('/people/', offset, limit)
   }
 
   public getPeople(id: string, personID: number) {

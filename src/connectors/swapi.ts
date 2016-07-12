@@ -16,20 +16,20 @@ export default class SWAPIConnector {
     })
   }
 
-  public fetchPage(resource: string, after?: string, first?: number, before?: string, last?: number) {
+  public fetchPage(resource: string, offset?: number, limit?: number) {
     let results = []
-    const firstIdx = first || 0
+    const size = limit || 0
 
     function pagination(pageURL: string) {
       return new Promise<any>((resolve, reject) => {
         this.fetch(pageURL).then((data) => {
-          if (firstIdx > 0 && firstIdx - results.length - data.results.length < 0) {
-            results = results.concat(data.results.slice(0, firstIdx - results.length))
+          if (size > 0 && size - results.length - data.results.length < 0) {
+            results = results.concat(data.results.slice(0, size - results.length))
           } else {
             results = results.concat(data.results)
           }
-          console.log(`first: ${first} size: ${results.length} ${pageURL}`)
-          if (data.next && (firstIdx === 0 || firstIdx - results.length > 0)) {
+          console.log(`first: ${size} size: ${results.length} ${pageURL}`)
+          if (data.next && (size === 0 || size - results.length > 0)) {
             pagination.call(this, data.next).then(resolve)
           } else {
             resolve(results)
