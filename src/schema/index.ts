@@ -1,5 +1,4 @@
 import film from './film'
-import pagination from './pagination'
 import people from './people'
 import planet from './planet'
 import root from './root'
@@ -16,7 +15,6 @@ const schema = `
 
 export default [
   film,
-  pagination,
   people,
   planet,
   root,

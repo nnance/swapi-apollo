@@ -1,13 +1,6 @@
 import * as request from 'request'
 
 
-export interface PaginationResult {
-  count?: number;
-  next?: string;
-  previous?: string;
-  results: Array<{}>
-}
-
 export default class SWAPIConnector {
   private rootURL: string
 
@@ -18,21 +11,40 @@ export default class SWAPIConnector {
   public fetch(resource: string) {
     const url = resource.indexOf(this.rootURL) === 0 ? resource : this.rootURL + resource
 
-    return new Promise<PaginationResult | any>((resolve, reject) => {
+    return new Promise<any>((resolve, reject) => {
       request.get(url, (err, resp, body) => {
         if (err) {
           reject(err)
         } else {
           const data = JSON.parse(body)
-          if (data.next) {
-            this.fetch(data.next).then(page => resolve(data.results.concat(page)))
-          } else if (data.results) {
-            resolve(data.results)
-          } else {
-            resolve(data)
-          }
+          resolve(data)
         }
       })
     })
+  }
+
+  public fetchPage(resource: string, after?: string, first?: number, before?: string, last?: number) {
+    let results = []
+    const firstIdx = first || 0
+
+    function pagination(pageURL: string) {
+      return new Promise<any>((resolve, reject) => {
+        this.fetch(pageURL).then((data) => {
+          if (firstIdx > 0 && firstIdx - results.length - data.results.length < 0) {
+            results = results.concat(data.results.slice(0, firstIdx - results.length))
+          } else {
+            results = results.concat(data.results)
+          }
+          console.log(`first: ${first} size: ${results.length} ${pageURL}`)
+          if (data.next && (firstIdx === 0 || firstIdx - results.length > 0)) {
+            pagination.call(this, data.next).then(resolve)
+          } else {
+            resolve(results)
+          }
+        })
+      })
+    }
+
+    return pagination.call(this, resource);
   }
 }

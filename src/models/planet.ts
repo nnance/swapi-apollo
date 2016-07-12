@@ -2,8 +2,8 @@ import BaseModel from './base'
 
 export default class Planet extends BaseModel {
 
-  public getPlanets() {
-    return this.connector.fetch('/planets/')
+  public getPlanets(after?: string, first?: number, before?: string, last?: number) {
+    return this.connector.fetchPage('/planets/', after, first, before, last)
   }
 
   public getPlanet(id: string, planetID: number) {
