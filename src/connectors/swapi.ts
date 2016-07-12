@@ -12,14 +12,7 @@ export default class SWAPIConnector {
     const url = resource.indexOf(this.rootURL) === 0 ? resource : this.rootURL + resource
 
     return new Promise<any>((resolve, reject) => {
-      request.get(url, (err, resp, body) => {
-        if (err) {
-          reject(err)
-        } else {
-          const data = JSON.parse(body)
-          resolve(data)
-        }
-      })
+      request.get(url, (err, resp, body) => err ? reject(err) : resolve(JSON.parse(body)))
     })
   }
 

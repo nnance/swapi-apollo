@@ -4,7 +4,7 @@ const apollo = require('apollo-server')
 
 import schema from './schema/index'
 import resolvers from './resolvers/index'
-import SWAPIConnector from './connector'
+import SWAPIConnector from './connectors/swapi'
 import FilmModel from './models/film'
 import PeopleModel from './models/people'
 import VehicleModel from './models/vehicle'

@@ -1,4 +1,4 @@
-import SWAPIConnector from '../connector'
+import SWAPIConnector from '../connectors/swapi'
 
 export default class BaseModel {
   protected connector: SWAPIConnector
