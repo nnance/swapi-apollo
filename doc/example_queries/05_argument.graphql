@@ -1,0 +1,14 @@
+{
+  allStarships(first: 7) {
+    id
+    name
+    model
+    costInCredits
+    pilots {
+      name
+      homeworld {
+        name
+      }
+    }
+  }
+}

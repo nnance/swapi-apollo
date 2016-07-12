@@ -1,0 +1,6 @@
+# GraphQL server handles pagination on this example
+{
+  allStarships {
+    id
+  }
+}

@@ -25,26 +25,14 @@ export default class SWAPIConnector {
         } else {
           const data = JSON.parse(body)
           if (data.next) {
-            this.pagination(data.next, resolve, data.results)
+            this.fetch(data.next).then(page => resolve(data.results.concat(page)))
           } else if (data.results) {
             resolve(data.results)
-          }else {
+          } else {
             resolve(data)
           }
         }
       })
     })
-  }
-
-  private pagination(next: string, resolve, results) {
-    this.fetch(next)
-      .then((data) => {
-        results = results.concat(data.results)
-        if (data.next) {
-          this.pagination(data.next, resolve, results)
-        } else {
-          resolve(results)
-        }
-      })
   }
 }

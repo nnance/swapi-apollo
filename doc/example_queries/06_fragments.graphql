@@ -1,0 +1,16 @@
+{
+  allStarships(first: 7) {
+    id
+    name
+    model
+    costInCredits
+    pilots {
+      ...pilotFragment
+    }
+  }
+}
+
+fragment pilotFragment on Person {
+  name
+  homeworld { name }
+}

@@ -1,0 +1,13 @@
+{
+  allStarships {
+    ...starshipFragment
+	}
+}
+
+fragment starshipFragment on Starship {
+  name,model,costInCredits, pilots { ...pilotFragment }
+}
+
+fragment pilotFragment on Person {
+  name,homeworld { name }
+}

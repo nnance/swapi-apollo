@@ -1,0 +1,13 @@
+{
+  person(personID: 4) {
+    name
+    gender
+    homeworld {
+      name
+    }
+    starships {
+      id
+      manufacturers
+    }
+  }
+}
