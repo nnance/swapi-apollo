@@ -1,5 +1,4 @@
 import * as express from 'express'
-import * as bodyParser from 'body-parser'
 const apollo = require('apollo-server')
 
 import schema from './schema/index'
@@ -14,10 +13,9 @@ import SpeciesModel from './models/species'
 
 const app = express()
 
-const apiHost = process.env.API_HOST ? `${process.env.API_HOST}/api/` : 'http://swapi.co/api/'
+const apiHost = process.env.API_HOST ? `${process.env.API_HOST}/api` : 'http://swapi.co/api'
 const port = process.env.NODE_PORT || 3000
 
-app.use(bodyParser.json())
 app.use('/graphql', apollo.apolloServer((req) => {
   const swapiConnector = new SWAPIConnector(apiHost)
 
