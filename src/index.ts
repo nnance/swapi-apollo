@@ -12,12 +12,14 @@ import PlanetModel from './models/planet'
 import StarshipModel from './models/starship'
 import SpeciesModel from './models/species'
 
-const port = 3000
 const app = express()
+
+const apiHost = process.env.API_HOST ? `${process.env.API_HOST}/api/` : 'http://swapi.co/api/'
+const port = process.env.NODE_PORT || 3000
 
 app.use(bodyParser.json())
 app.use('/graphql', apollo.apolloServer((req) => {
-  const swapiConnector = new SWAPIConnector('http://swapi.co/api')
+  const swapiConnector = new SWAPIConnector(apiHost)
 
   return {
       graphiql: true,
