@@ -1,4 +1,4 @@
-const allFilms = (_, params, context) => context.film.getFilms(params.offset, params.limit
+const allFilms = (_, params, context) => context.film.getFilms(params.offset, params.limit)
 const film = (_, params, context) => context.film.getFilm(params.id, params.filmID)
 const person = (_, params, context) => context.people.getPeople(params.id, params.personID)
 const allPeople = (_, params, context) => context.people.getPeoples(params.offset, params.limit)
