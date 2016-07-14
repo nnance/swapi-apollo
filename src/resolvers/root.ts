@@ -1,9 +1,13 @@
+function person(_, params, context) {
+  return context.people.getPeople(params.id, params.personID)
+}
+
 export default {
   RootQuery: {
     allFilms: (_, params, context) => context.film.getFilms(params.offset, params.limit),
     film: (_, params, context) => context.film.getFilm(params.id, params.filmID),
     allPeople: (_, params, context) => context.people.getPeoples(params.offset, params.limit),
-    person: (_, params, context) => context.people.getPeople(params.id, params.personID),
+    person,
     allPlanets: (_, params, context) => context.planet.getPlanets(params.offset, params.limit),
     planet: (_, params, context) => context.planet.getPlanet(params.id, params.planetID),
     allSpecies: (_, params, context) => context.species.getAllSpecies(params.offset, params.limit),
