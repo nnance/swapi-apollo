@@ -8,9 +8,9 @@ export default class BaseModel {
   }
 
   public getConnections(urls: Array<string>) {
-    return urls.map(url => this.connector.fetch(url))
+    return this.connector.loader.loadMany(urls)
   }
   public getConnection(url: string) {
-    return this.connector.fetch(url)
+    return this.connector.loader.load(url)
   }
 }
