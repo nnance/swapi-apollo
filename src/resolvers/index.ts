@@ -6,4 +6,4 @@ import species from './species'
 import starship from './starship'
 import vehicle from './vehicle'
 
-export default Object.assign(rootQuery, film, people, planet, species, starship, vehicle);
+export default Object.assign(rootQuery, film, people, planet, species, starship, vehicle)

@@ -80,8 +80,8 @@
     ],
     "radix": true,
     "semicolon": [
-      false,
-      "always"
+      true,
+      "never"
     ],
     "switch-default": true,
     "trailing-comma": [

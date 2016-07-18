@@ -6,7 +6,7 @@ export default class SWAPIConnector {
   private rootURL: string
 
   constructor(rootURL: string) {
-    this.rootURL = rootURL;
+    this.rootURL = rootURL
     this.loader = new DataLoader((urls) => {
       const promises = urls.map((url) => {
         return this.fetch(url)
@@ -62,6 +62,6 @@ export default class SWAPIConnector {
       })
     }
 
-    return pagination.call(this, resource);
+    return pagination.call(this, resource)
   }
 }

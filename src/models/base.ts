@@ -4,7 +4,7 @@ export default class BaseModel {
   protected connector: SWAPIConnector
 
   constructor(connector) {
-    this.connector = connector;
+    this.connector = connector
   }
 
   public getConnections(urls: Array<string>) {
