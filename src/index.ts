@@ -1,7 +1,9 @@
 import * as express from 'express'
-const apollo = require('apollo-server')
+import * as bodyParser from 'body-parser'
+import * as apollo from 'apollo-server'
+const gqlTools = require('graphql-tools')
 
-import schema from './schema/index'
+import typeDefs from './schema/index'
 import resolvers from './resolvers/index'
 import SWAPIConnector from './connectors/swapi'
 import FilmModel from './models/film'
@@ -16,13 +18,14 @@ const app = express()
 const apiHost = process.env.API_HOST ? `${process.env.API_HOST}/api` : 'http://swapi.co/api'
 const port = process.env.NODE_PORT || 3000
 
-app.use('/graphql', apollo.apolloServer((req) => {
+const schema = gqlTools.makeExecutableSchema({ typeDefs, resolvers })
+
+app.use(bodyParser.json())
+app.use('/graphql', apollo.apolloExpress((req) => {
   const swapiConnector = new SWAPIConnector(apiHost)
 
   return {
-      graphiql: true,
       pretty: true,
-      resolvers,
       schema,
       context: {
           film: new FilmModel(swapiConnector),
@@ -34,6 +37,7 @@ app.use('/graphql', apollo.apolloServer((req) => {
       },
   }
 }))
+app.use('/', apollo.graphiqlExpress({endpointURL: '/graphql'}))
 
 app.listen(port, () => {
     console.log(`Server is listen on ${port}`)

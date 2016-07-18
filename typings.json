@@ -1,13 +1,14 @@
 {
   "dependencies": {
     "chai": "registry:npm/chai#3.5.0+20160415060238",
-    "graphql": "registry:npm/graphql#0.5.0+20160602041655",
+    "graphql": "github:nitintutlani/typed-graphql",
     "request": "registry:npm/request#2.69.0+20160428223725"
   },
   "globalDependencies": {
     "body-parser": "registry:dt/body-parser#0.0.0+20160619023215",
     "express": "registry:dt/express#4.0.0+20160708185218",
     "express-serve-static-core": "registry:dt/express-serve-static-core#4.0.0+20160711183608",
+    "hapi": "registry:dt/hapi#13.0.0+20160709092105",
     "mime": "registry:dt/mime#0.0.0+20160316155526",
     "node": "registry:dt/node#6.0.0+20160709114037",
     "serve-static": "registry:dt/serve-static#0.0.0+20160606155157"
