@@ -7,7 +7,7 @@ export default class Film extends BaseModel {
   }
 
   public getFilm(id: string, filmID: number) {
-    const url = id || `/films/${filmID}`
+    const url = id || `/films/${filmID}/`
     return this.connector.fetch(url)
   }
 }

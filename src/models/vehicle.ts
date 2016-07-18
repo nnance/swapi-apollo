@@ -7,7 +7,7 @@ export default class Vehicle extends BaseModel {
   }
 
   public getVehicle(id: string, vehicleID: number) {
-    const url = id || `/vehicles/${vehicleID}`
+    const url = id || `/vehicles/${vehicleID}/`
     return this.connector.fetch(url)
   }
 }

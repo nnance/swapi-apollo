@@ -7,7 +7,7 @@ export default class People extends BaseModel {
   }
 
   public getPeople(id: string, personID: number) {
-    const url = id || `/people/${personID}`
+    const url = id || `/people/${personID}/`
     return this.connector.fetch(url)
   }
 }

@@ -7,7 +7,7 @@ export default class Species extends BaseModel {
   }
 
   public getSpecies(id: string, speciesID: number) {
-    const url = id || `/species/${speciesID}`
+    const url = id || `/species/${speciesID}/`
     return this.connector.fetch(url)
   }
 }

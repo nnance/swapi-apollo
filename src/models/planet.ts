@@ -7,7 +7,7 @@ export default class Planet extends BaseModel {
   }
 
   public getPlanet(id: string, planetID: number) {
-    const url = id || `/planets/${planetID}`
+    const url = id || `/planets/${planetID}/`
     return this.connector.fetch(url)
   }
 }
