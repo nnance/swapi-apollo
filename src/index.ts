@@ -1,5 +1,6 @@
 import * as express from 'express'
 import * as bodyParser from 'body-parser'
+import * as hapi from 'hapi'
 import * as apollo from 'apollo-server'
 const gqlTools = require('graphql-tools')
 
@@ -16,12 +17,12 @@ import SpeciesModel from './models/species'
 const app = express()
 
 const apiHost = process.env.API_HOST ? `${process.env.API_HOST}/api` : 'http://swapi.co/api'
-const port = process.env.NODE_PORT || 3000
+const expressPort = process.env.EXPRESS_PORT || 3000
+const hapiPort = process.env.HAPI_PORT || 8000
 
 const schema = gqlTools.makeExecutableSchema({ typeDefs, resolvers })
 
-app.use(bodyParser.json())
-app.use('/graphql', apollo.apolloExpress((req) => {
+function graphqlOptions() {
   const swapiConnector = new SWAPIConnector(apiHost)
 
   return {
@@ -36,9 +37,42 @@ app.use('/graphql', apollo.apolloExpress((req) => {
           species: new SpeciesModel(swapiConnector),
       },
   }
-}))
-app.use('/', apollo.graphiqlExpress({endpointURL: '/graphql'}))
+}
 
-app.listen(port, () => {
-    console.log(`Server is listen on ${port}`)
-})
+function startExpress() {
+  app.use(bodyParser.json())
+  app.use('/graphql', apollo.apolloExpress(graphqlOptions))
+  app.use('/', apollo.graphiqlExpress({endpointURL: '/graphql'}))
+
+  app.listen(expressPort, () => {
+      console.log(`Server is listen on ${expressPort}`)
+  })
+}
+
+function startHapi() {
+  const server = new hapi.Server()
+
+  server.connection({
+      host: 'localhost',
+      port: hapiPort,
+  })
+
+  server.register({
+      register: new apollo.ApolloHAPI(),
+      options: graphqlOptions,
+      routes: { prefix: '/graphql' },
+  })
+
+  server.register({
+      register: new apollo.GraphiQLHAPI(),
+      options: { endpointURL: '/graphql' },
+      routes: { prefix: '/graphql' },
+  })
+
+  server.start(() => {
+    console.log(`Server is listen on ${hapiPort}`)
+  })
+}
+
+startExpress()
+startHapi()
