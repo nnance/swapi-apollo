@@ -7,7 +7,6 @@ Uses:
 * [apollo-server](https://github.com/apollostack/apollo-server) - Apollo server GraphQL middleware for express.
 * [graphql-js](https://github.com/graphql/graphql-js) - a JavaScript GraphQL runtime.
 * [DataLoader](https://github.com/facebook/dataloader) - for coalescing and caching fetches.
-* [express-graphql](https://github.com/graphql/express-graphql) - to provide HTTP access to GraphQL.
 * [GraphiQL](https://github.com/graphql/graphiql) - for easy exploration of this GraphQL server.
 
 ## Getting Started
