@@ -65,7 +65,7 @@ function startHapi() {
 
   server.register({
       register: new apollo.GraphiQLHAPI(),
-      options: { endpointURL: '/graphql' },
+      options: { endpointURL: '/' },
       routes: { prefix: '/graphql' },
   })
 
