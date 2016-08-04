@@ -1,6 +1,6 @@
 #SWAPI Apollo Server Wrapper
 
-A wrapper around [SWAPI](http://swapi.co) built using Apollo Server.
+A wrapper around [SWAPI](http://swapi.co) built using Apollo Server.  This is intended to be a POC of an express and HAPI GraphQL server.
 
 Uses:
 
@@ -19,14 +19,15 @@ npm install
 
 ## Local Server
 
-A local express server is in `./src`. It can be run with:
+A local server is in `./src`. It can be run with:
 
 ```sh
 npm start
 ```
 
-A GraphiQL instance will be opened at http://localhost:3000/graphql to
-explore the API.
+This is will start both an express server on port 3000 and a HAPI server on port 8000.
+
+You can explore the API at http://localhost:3000 or http://localhost:8000
 
 ## Development Server
 
