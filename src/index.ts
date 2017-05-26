@@ -12,8 +12,9 @@ import VehicleModel from './models/vehicle'
 import PlanetModel from './models/planet'
 import StarshipModel from './models/starship'
 import SpeciesModel from './models/species'
+import { startExpress } from './express'
+import { startHapi } from './hapi'
 
-const app = express()
 
 const apiHost = process.env.API_HOST ? `${process.env.API_HOST}/api` : 'http://swapi.co/api'
 const expressPort = process.env.EXPRESS_PORT || 3000
@@ -37,10 +38,8 @@ function graphqlOptions() {
   }
 }
 
-function startExpress() {
-  app.use(bodyParser.json())
-  app.use('/graphql', apollo.apolloExpress(graphqlOptions))
-  app.use('/', apollo.graphiqlExpress({endpointURL: '/graphql'}))
+startExpress(graphqlOptions)
+startHapi(graphqlOptions)
 
   app.listen(expressPort, () => {
       console.log(`Server is listen on ${expressPort}`)
