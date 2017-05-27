@@ -1,5 +1,5 @@
 import * as hapi from 'hapi'
-import * as apollo from 'apollo-server'
+import * as apollo from 'graphql-server-hapi'
 
 const hapiPort = process.env.HAPI_PORT || 8000
 
@@ -12,17 +12,25 @@ export function startHapi(graphqlOptions) {
   })
 
   server.register({
-    register: new apollo.ApolloHAPI(),
-    options: graphqlOptions,
-    routes: { prefix: '/graphql' },
+      options: {
+          graphqlOptions,
+          path: '/graphql',
+      },
+      register: apollo.graphqlHapi,
   })
 
   server.register({
-      register: new apollo.GraphiQLHAPI(),
-      options: { endpointURL: '/graphql' },
+      options: {
+          graphiqlOptions: {
+              endpointURL: '/graphql',
+          },
+          path: '/',
+      },
+      register: apollo.graphiqlHapi,
   })
 
   server.start(() => {
     console.log(`HAPI server is listen on ${hapiPort}`)
+    console.log(`open browser to http://localhost:${hapiPort}`)
   })
 }

@@ -4,7 +4,8 @@ A wrapper around [SWAPI](http://swapi.co) built using Apollo Server.  This is in
 
 Uses:
 
-* [apollo-server](https://github.com/apollostack/apollo-server) - Apollo server GraphQL middleware for express.
+* [graphql-server-express](https://github.com/apollographql/graphql-server) - Apollo server GraphQL middleware for express.
+* [graphql-server-hapi](https://github.com/apollographql/graphql-server) - Apollo server GraphQL plugin for Hapi.
 * [graphql-js](https://github.com/graphql/graphql-js) - a JavaScript GraphQL runtime.
 * [DataLoader](https://github.com/facebook/dataloader) - for coalescing and caching fetches.
 * [GraphiQL](https://github.com/graphql/graphiql) - for easy exploration of this GraphQL server.
