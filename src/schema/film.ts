@@ -1,5 +1,13 @@
 export default `
 
+type FilmDetails {
+  species: [Species]
+  starships: [Starship]
+  vehicles: [Vehicle]
+  characters: [Person]
+  planets: [Planet]
+}
+
 type Film implements Node {
   title: String
   episodeID: Int
@@ -7,13 +15,9 @@ type Film implements Node {
   director: String
   producers: [String]
   releaseDate: String
-  species: [Species]
-  starships: [Starship]
-  vehicles: [Vehicle]
-  characters: [Person]
-  planets: [Planet]
   created: String
   edited: String
+  details: FilmDetails
   id: ID!
 }
 `
