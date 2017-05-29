@@ -13,10 +13,10 @@ export default {
     }),
   },
   FilmDetails: {
-    species: (details, _, context) => context.species.getConnections(details.species),
-    starships: (details, _, context) => context.starship.getConnections(details.starships),
-    vehicles: (details, _, context) => context.vehicle.getConnections(details.vehicles),
-    characters: (details, _, context) => context.people.getConnections(details.characters),
-    planets: (details, _, context) => context.planet.getConnections(details.planets),
+    species: (details, _, context) => context.loader.loadMany(details.species),
+    starships: (details, _, context) => context.loader.loadMany(details.starships),
+    vehicles: (details, _, context) => context.loader.loadMany(details.vehicles),
+    characters: (details, _, context) => context.loader.loadMany(details.characters),
+    planets: (details, _, context) => context.loader.loadMany(details.planets),
   },
 }

@@ -1,8 +1,9 @@
 const gqlTools = require('graphql-tools')
 
 import typeDefs from './schema/index'
-import resolvers from './resolvers/index'
+import getResolvers from './resolvers/index'
 import SWAPIConnector from './connectors/swapi'
+import { getFetch, getLoader } from './connectors/swapi'
 import FilmModel from './models/film'
 import PeopleModel from './models/people'
 import VehicleModel from './models/vehicle'
@@ -15,7 +16,8 @@ import { startHapi } from './hapi'
 
 const apiHost = process.env.API_HOST ? `${process.env.API_HOST}/api` : 'http://swapi.co/api'
 
-const schema = gqlTools.makeExecutableSchema({ typeDefs, resolvers })
+const fetcher = getFetch(apiHost)
+const schema = gqlTools.makeExecutableSchema({ typeDefs, resolvers: getResolvers(fetcher) })
 
 function graphqlOptions() {
   const swapiConnector = new SWAPIConnector(apiHost)
@@ -24,7 +26,8 @@ function graphqlOptions() {
       pretty: true,
       schema,
       context: {
-          film: new FilmModel(swapiConnector),
+          connector: swapiConnector,
+          loader: getLoader(fetcher),
           vehicle: new VehicleModel(swapiConnector),
           people: new PeopleModel(swapiConnector),
           planet: new PlanetModel(swapiConnector),
