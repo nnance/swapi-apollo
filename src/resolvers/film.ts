@@ -1,4 +1,10 @@
-export default {
+import { getPageFetcher } from '../connectors/swapi'
+
+export default (fetch) => ({
+  RootQuery: {
+      allFilms: (_, params) => getPageFetcher(fetch)('/films/', params.offset, params.limit),
+      film: (_, params) => fetch(params.id || `/films/${params.filmID}/`),
+  },
   Film: {
     id: (film) => film.url,
     episodeID: (film) => film.episode_id,
@@ -19,4 +25,4 @@ export default {
     characters: (details, _, context) => context.loader.loadMany(details.characters),
     planets: (details, _, context) => context.loader.loadMany(details.planets),
   },
-}
+})

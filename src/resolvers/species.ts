@@ -1,4 +1,10 @@
-export default {
+import { getPageFetcher } from '../connectors/swapi'
+
+export default (fetch) => ({
+  RootQuery: {
+      allSpecies: (_, params) => getPageFetcher(fetch)('/species/', params.offset, params.limit),
+      species: (_, params) => fetch(params.id || `/species/${params.speciesID}/`),
+  },
   Species: {
     id: (species) => species.url,
     averageHeight: (species) => species.average_height,

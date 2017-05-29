@@ -1,4 +1,10 @@
-export default {
+import { getPageFetcher } from '../connectors/swapi'
+
+export default (fetch) => ({
+  RootQuery: {
+      allStarships: (_, params) => getPageFetcher(fetch)('/starships/', params.offset, params.limit),
+      starship: (_, params) => fetch(params.id || `/starships/${params.starshipID}/`),
+  },
   Starship: {
     id: (starship) => starship.url,
     costInCredits: (starship) => starship.cost_in_credits,

@@ -1,4 +1,10 @@
-export default {
+import { getPageFetcher } from '../connectors/swapi'
+
+export default (fetch) => ({
+  RootQuery: {
+      allPeople: (_, params) => getPageFetcher(fetch)('/people/', params.offset, params.limit),
+      person: (_, params) => fetch(params.id || `/people/${params.personID}/`),
+  },
   Person: {
     id: (person) => person.url,
     hairColor: (person) => person.hair_color,
