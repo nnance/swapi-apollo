@@ -16,15 +16,11 @@ const transform = (conversion) => (films) => films.map(conversion)
 export default class Film extends BaseModel {
 
   public getFilms(offset?: number, limit?: number) {
-    return this.connector
-            .fetchPage('/films/', offset, limit)
-            .then(transform(convertFilm))
+    return this.connector.fetchPage('/films/', offset, limit)
   }
 
   public getFilm(id: string, filmID: number) {
     const url = id || `/films/${filmID}/`
-    return this.connector
-            .fetch(url)
-            .then(transform(convertFilm))
+    return this.connector.fetch(url)
   }
 }

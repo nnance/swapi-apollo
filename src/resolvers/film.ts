@@ -1,25 +1,22 @@
-const id = (film) => film.url
-const episodeID = (film) => film.episode_id
-const openingCrawl = (film) => film.opening_crawl
-const releaseDate = (film) => film.release_date
-const species = (details, _, context) => context.species.getConnections(details.species)
-const starships = (details, _, context) => context.starship.getConnections(details.starships)
-const vehicles = (details, _, context) => context.vehicle.getConnections(details.vehicles)
-const characters = (details, _, context) => context.people.getConnections(details.characters)
-const planets = (details, _, context) => context.planet.getConnections(details.planets)
-
 export default {
   Film: {
-    id,
-    episodeID,
-    openingCrawl,
-    releaseDate,
+    id: (film) => film.url,
+    episodeID: (film) => film.episode_id,
+    openingCrawl: (film) => film.opening_crawl,
+    releaseDate: (film) => film.release_date,
+    details: (film) => ({
+      species: film.species,
+      starships: film.starships,
+      vehicles: film.vehicles,
+      characters: film.characters,
+      planets: film.planets,
+    }),
   },
   FilmDetails: {
-    species,
-    starships,
-    vehicles,
-    characters,
-    planets,
+    species: (details, _, context) => context.species.getConnections(details.species),
+    starships: (details, _, context) => context.starship.getConnections(details.starships),
+    vehicles: (details, _, context) => context.vehicle.getConnections(details.vehicles),
+    characters: (details, _, context) => context.people.getConnections(details.characters),
+    planets: (details, _, context) => context.planet.getConnections(details.planets),
   },
 }
