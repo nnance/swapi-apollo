@@ -1,9 +1,11 @@
 import { getPageFetcher } from '../connectors/swapi'
 
+const path = '/vehicles/'
+
 export default (fetch) => ({
   RootQuery: {
-      allVehicles: (_, params) => getPageFetcher(fetch)('/vehicles/', params.offset, params.limit),
-      vehicle: (_, params) => fetch(params.id || `/vehicles/${params.vehicleID}/`),
+      allVehicles: (_, params) => getPageFetcher(fetch)(path, params.offset, params.limit),
+      vehicle: (_, params) => fetch(params.id || `${path}${params.vehicleID}/`),
   },
   Vehicle: {
     id: (vehicle) => vehicle.url,

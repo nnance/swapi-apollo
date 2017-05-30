@@ -5,16 +5,20 @@ export interface IFetcher {
   (resource: string): Promise<any>
 }
 
-export const getFetch = (rootURL: string): IFetcher => (resource: string): Promise<any> => {
-  const url = resource.indexOf(rootURL) === 0 ? resource : rootURL + resource
+export const getFetcher = (rootURL?: string): IFetcher => {
+  const apiRoot = rootURL || 'http://swapi.co/api'
 
-  return new Promise<any>((resolve, reject) => {
-    console.log(`fetch: ${url}`)
-    request.get(url, (err, resp, body) => {
-      console.log(`fetch: ${url} completed`)
-      err ? reject(err) : resolve(JSON.parse(body))
+  return (resource: string): Promise<any> => {
+    const url = resource.indexOf(apiRoot) === 0 ? resource : apiRoot + resource
+
+    return new Promise<any>((resolve, reject) => {
+      console.log(`fetch: ${url}`)
+      request.get(url, (err, resp, body) => {
+        console.log(`fetch: ${url} completed`)
+        err ? reject(err) : resolve(JSON.parse(body))
+      })
     })
-  })
+  }
 }
 
 export const getLoader = (fetch: IFetcher) => {
