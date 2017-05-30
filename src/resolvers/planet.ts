@@ -13,4 +13,4 @@ export default (fetch) => ({
     residents: (planet, _, context) => context.loader.loadMany(planet.residents),
     films: (planet, _, context) => context.loader.loadMany(planet.films),
   },
-}
+})

@@ -16,4 +16,4 @@ export default (fetch) => ({
     people: (species, _, context) => context.loader.loadMany(species.people),
     films: (species, _, context) => context.loader.loadMany(species.films),
   },
-}
+})

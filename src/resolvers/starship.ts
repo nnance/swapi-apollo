@@ -15,4 +15,4 @@ export default (fetch) => ({
     pilots: (starship, _, context) => context.loader.loadMany(starship.pilots),
     films: (starship, _, context) => context.loader.loadMany(starship.films),
   },
-}
+})

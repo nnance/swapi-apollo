@@ -17,4 +17,4 @@ export default (fetch) => ({
     starships: (person, _, context) => context.loader.loadMany(person.starships),
     vehicles: (person, _, context) => context.loader.loadMany(person.vehicles),
   },
-}
+})

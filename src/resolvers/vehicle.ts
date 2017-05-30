@@ -14,4 +14,4 @@ export default (fetch) => ({
     pilots: (vehicle, _, context) => context.loader.loadMany(vehicle.pilots),
     films: (vehicle, _, context) => context.loader.loadMany(vehicle.films),
   },
-}
+})
