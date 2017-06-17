@@ -1,18 +1,14 @@
-export default `
-
-type Starship implements Node {
+type Vehicle implements Node {
   name: String
   model: String
-  starshipClass: String
+  vehicleClass: String
   manufacturers: [String]
-  costInCredits: Float
+  costInCredits: Int
   length: Float
   crew: String
   passengers: String
   maxAtmospheringSpeed: Int
-  hyperdriveRating: Float
-  MGLT: Int
-  cargoCapacity: Float
+  cargoCapacity: Int
   consumables: String
   pilots: [Person]
   films: [Film]
@@ -20,4 +16,3 @@ type Starship implements Node {
   edited: String
   id: ID!
 }
-`

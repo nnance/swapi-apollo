@@ -1,5 +1,3 @@
-export default `
-
 type Species implements Node {
   name: String
   classification: String
@@ -17,4 +15,3 @@ type Species implements Node {
   edited: String
   id: ID!
 }
-`
