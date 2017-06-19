@@ -1,0 +1,36 @@
+{
+  "name": "swapi-apollo-planets",
+  "version": "0.0.1",
+  "description": "The Planets module for Apollo GraphQL SWAPI",
+  "main": "./dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "lint": "tslint src/**/*",
+    "start": "npm run build && node ./dist/index.js",
+    "dev": "nodemon ./dist/index.js",
+    "test": "npm run build && mocha ./dist/index.test"
+  },
+  "keywords": [
+    "Apollo-Stack",
+    "GraphQL"
+  ],
+  "author": "Nick Nance",
+  "license": "ISC",
+  "dependencies": {
+    "@creditkarma/graphql-loader": "^0.3.0"
+  },
+  "devDependencies": {
+    "@types/chai": "^4.0.0",
+    "@types/graphql": "^0.9.1",
+    "@types/mocha": "^2.2.41",
+    "chai": "^4.0.2",
+    "mocha": "^3.4.2",
+    "nodemon": "^1.11.0",
+    "rimraf": "^2.6.1",
+    "tslint": "^5.3.2",
+    "typescript": "^2.3.3"
+  },
+  "peerDependencies": {
+    "graphql": "^0.9.6"
+  }
+}
