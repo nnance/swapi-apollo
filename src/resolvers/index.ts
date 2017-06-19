@@ -23,6 +23,6 @@ export default (fetch: IFetcher) => Object.assign(
             species(fetch).RootQuery,
             starship(fetch).RootQuery,
             vehicle(fetch).RootQuery,
-        )
+        ),
     },
 )

@@ -1,7 +1,7 @@
 import { loadSchema } from '@creditkarma/graphql-loader'
 import { addResolveFunctionsToSchema } from 'graphql-tools'
 import { GraphQLSchema } from 'graphql'
-import getResolvers from './resolvers/index'
+import getResolversWithFetchers from './resolvers/index'
 import { getFetcher, getLoader } from './connectors/swapi'
 import { startExpress } from './express'
 import { startHapi } from './hapi'
@@ -23,9 +23,9 @@ const graphqlOptions = (schema: GraphQLSchema) => {
 
 loadSchema('./schema/*.gql')
     .then(schema => {
-        const resolvers = getResolvers(fetcher)
-        addResolveFunctionsToSchema(schema, resolvers)
+        const resolvers = getResolversWithFetchers(fetcher)
 
+        addResolveFunctionsToSchema(schema, resolvers)
         startExpress(graphqlOptions(schema))
         startHapi(graphqlOptions(schema))
     })
