@@ -1,5 +1,6 @@
 import * as request from 'request'
 const DataLoader = require('dataloader')
+const debug = require('debug')('swapi')
 
 export interface IFetcher {
   (resource: string): Promise<any>
@@ -12,9 +13,9 @@ export const getFetcher = (rootURL?: string): IFetcher => {
     const url = resource.indexOf(apiRoot) === 0 ? resource : apiRoot + resource
 
     return new Promise<any>((resolve, reject) => {
-      console.log(`fetch: ${url}`)
+      debug(`fetch: ${url}`)
       request.get(url, (err, resp, body) => {
-        console.log(`fetch: ${url} completed`)
+        debug(`fetch: ${url} completed`)
         err ? reject(err) : resolve(JSON.parse(body))
       })
     })
