@@ -6,18 +6,18 @@
     "transfer-encoding": "chunked",
     "connection": "keep-alive",
     "set-cookie": [
-      "__cfduid=d40b8f1461663f86e516307008a1b39701497932513; expires=Wed, 20-Jun-18 04:21:53 GMT; path=/; domain=.swapi.co; HttpOnly"
+      "__cfduid=dbd27bf03853d9d1ac175574ae627ce2b1497932513; expires=Wed, 20-Jun-18 04:21:53 GMT; path=/; domain=.swapi.co; HttpOnly"
     ],
-    "etag": "\"167b2ef894493c72d59ba5a45bab88cf\"",
+    "etag": "\"1bf191c6b5b22c8e4d47c2c4e0b6590f\"",
     "vary": "Accept, Cookie",
     "allow": "GET, HEAD, OPTIONS",
     "x-frame-options": "SAMEORIGIN",
     "via": "1.1 vegur",
     "server": "cloudflare-nginx",
-    "cf-ray": "371bf1a116976bce-SJC"
+    "cf-ray": "371bf1a316f8289a-SJC"
   },
-  "url": "http://swapi.co:80/api/planets/1/",
-  "time": 565,
+  "url": "http://swapi.co:80/api/planets/",
+  "time": 292,
   "request": {
     "method": "GET",
     "headers": {

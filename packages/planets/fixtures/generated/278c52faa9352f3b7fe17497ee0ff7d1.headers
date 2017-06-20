@@ -1,23 +1,23 @@
 {
   "statusCode": 200,
   "headers": {
-    "date": "Tue, 20 Jun 2017 04:21:53 GMT",
+    "date": "Tue, 20 Jun 2017 04:21:54 GMT",
     "content-type": "application/json",
     "transfer-encoding": "chunked",
     "connection": "keep-alive",
     "set-cookie": [
-      "__cfduid=d40b8f1461663f86e516307008a1b39701497932513; expires=Wed, 20-Jun-18 04:21:53 GMT; path=/; domain=.swapi.co; HttpOnly"
+      "__cfduid=d514a921feb910f06f24d74a6e87b7a501497932514; expires=Wed, 20-Jun-18 04:21:54 GMT; path=/; domain=.swapi.co; HttpOnly"
     ],
-    "etag": "\"167b2ef894493c72d59ba5a45bab88cf\"",
+    "etag": "\"468926f92aeb0e278ea434b134a8e1d9\"",
     "vary": "Accept, Cookie",
     "allow": "GET, HEAD, OPTIONS",
     "x-frame-options": "SAMEORIGIN",
     "via": "1.1 vegur",
     "server": "cloudflare-nginx",
-    "cf-ray": "371bf1a116976bce-SJC"
+    "cf-ray": "371bf1a6d3b36d6c-SJC"
   },
-  "url": "http://swapi.co:80/api/planets/1/",
-  "time": 565,
+  "url": "http://swapi.co:80/api/planets/?page=3",
+  "time": 302,
   "request": {
     "method": "GET",
     "headers": {
