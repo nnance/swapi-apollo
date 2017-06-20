@@ -22,9 +22,11 @@
   },
   "devDependencies": {
     "@types/chai": "^4.0.0",
+    "@types/debug": "0.0.29",
     "@types/graphql": "^0.9.1",
     "@types/mocha": "^2.2.41",
     "chai": "^4.0.2",
+    "debug": "^2.6.8",
     "mocha": "^3.4.2",
     "nodemon": "^1.11.0",
     "replayer": "^2.1.3",
