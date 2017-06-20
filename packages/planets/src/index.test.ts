@@ -12,8 +12,7 @@ const pluginOptions = {
 describe('Schema Loading Tests', () => {
     let schema: GraphQLSchema
     before(async () => {
-        const registration = await planetsPlugin(pluginOptions)
-        schema = registration.schema
+        schema = await planetsPlugin(pluginOptions)
     })
     it('Schema can be loaded', async () => {
         expect(schema).to.exist
@@ -25,7 +24,7 @@ describe('Schema Loading Tests', () => {
 
 describe('Schema Introspection Tests', () => {
     it('Allows querying the schema for types', async () => {
-        const { schema } = await planetsPlugin(pluginOptions)
+        const schema = await planetsPlugin(pluginOptions)
         const result = await graphql(schema, introspectionQuery)
         const types = result.data.__schema.types.filter(type => {
             return type.name === 'RootQuery' || type.name === 'Planet'
@@ -37,9 +36,7 @@ describe('Schema Introspection Tests', () => {
 describe('Query Execution Tests', () => {
     let schema: GraphQLSchema
     before(async () => {
-        const registration = await planetsPlugin(pluginOptions)
-        schema = registration.schema
-        addResolveFunctionsToSchema(schema, registration.resolvers)
+        schema = await planetsPlugin(pluginOptions)
     })
     it('Allows querying for a single plant', async () => {
         const results = await graphql(schema, '{ planet(planetID: 1) { name }}')

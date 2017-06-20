@@ -8,7 +8,8 @@
     "lint": "tslint src/**/*",
     "start": "npm run build && node ./dist/index.js",
     "dev": "nodemon ./dist/index.js",
-    "test": "npm run build && mocha ./dist/index.test"
+    "test:record": "npm run build && VCR_MODE=record mocha ./dist/index.test",
+    "test": "npm run build && VCR_MODE=playback mocha ./dist/index.test"
   },
   "keywords": [
     "Apollo-Stack",
@@ -27,6 +28,7 @@
     "mocha": "^3.4.2",
     "nodemon": "^1.11.0",
     "rimraf": "^2.6.1",
+    "sepia": "^2.0.2",
     "tslint": "^5.3.2",
     "typescript": "^2.3.3"
   },
