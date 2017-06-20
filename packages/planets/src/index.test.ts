@@ -1,3 +1,5 @@
+require('replayer')
+
 import { expect } from 'chai'
 import * as mocha from 'mocha'
 import { GraphQLSchema, graphql, introspectionQuery } from 'graphql'
