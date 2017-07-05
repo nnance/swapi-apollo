@@ -15,7 +15,10 @@ Uses:
 Install dependencies with
 
 ```sh
-npm install
+cd ./packages/planets
+npm i && npm run build && npm link
+cd ../../
+npm link swapi-apollo-planets && npm i
 ```
 
 ## Local Server
