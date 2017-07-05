@@ -16,9 +16,9 @@ Install dependencies with
 
 ```sh
 cd ./packages/planets
-npm i && npm run build && npm link
+npm i && npm run build
 cd ../../
-npm link swapi-apollo-planets && npm i
+npm i ./packages/planets
 ```
 
 ## Local Server
