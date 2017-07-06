@@ -31,7 +31,7 @@ export const getLoader = (fetch: IFetcher) => {
     }, {batch: false})
 }
 
-export const getPageFetcher = (fetch: IFetcher) => (resource: string, offset?: number, limit?: number) => {
+export const getPageFetcher = (fetch: IFetcher, resource: string) => (offset?: number, limit?: number) => {
   let results = []
   let index = 0
   const size = limit || 0
