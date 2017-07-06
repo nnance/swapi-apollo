@@ -4,7 +4,7 @@ const path = '/planets/'
 
 export default (fetch) => ({
   RootQuery: {
-      allPlanets: (_, params) => getPageFetcher(fetch)(path, params.offset, params.limit),
+      allPlanets: (_, params) => getPageFetcher(fetch, path)(params.offset, params.limit),
       planet: (_, params) => fetch(params.id || `${path}${params.planetID}/`),
   },
   Planet: {

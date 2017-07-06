@@ -4,17 +4,16 @@ import { expect } from 'chai'
 import * as mocha from 'mocha'
 import { GraphQLSchema, graphql, introspectionQuery } from 'graphql'
 import { addResolveFunctionsToSchema } from 'graphql-tools'
+import { getFetcher } from './connectors/swapi'
 import planetsPlugin from './index'
 
-const pluginOptions = {
-    apiHost: 'http://swapi.co/api',
-}
+const fetcher = getFetcher('http://swapi.co/api')
 
 // tslint:disable:no-unused-expression
 describe('Schema Loading Tests', () => {
     let schema: GraphQLSchema
     before(async () => {
-        schema = await planetsPlugin(pluginOptions)
+        schema = await planetsPlugin(fetcher)
     })
     it('Schema can be loaded', async () => {
         expect(schema).to.exist
@@ -26,7 +25,7 @@ describe('Schema Loading Tests', () => {
 
 describe('Schema Introspection Tests', () => {
     it('Allows querying the schema for types', async () => {
-        const schema = await planetsPlugin(pluginOptions)
+        const schema = await planetsPlugin(fetcher)
         const result = await graphql(schema, introspectionQuery)
         const types = result.data.__schema.types.filter(type => {
             return type.name === 'RootQuery' || type.name === 'Planet'
@@ -38,7 +37,7 @@ describe('Schema Introspection Tests', () => {
 describe('Query Execution Tests', () => {
     let schema: GraphQLSchema
     before(async () => {
-        schema = await planetsPlugin(pluginOptions)
+        schema = await planetsPlugin(fetcher)
     })
     it('Allows querying for a single planet', async () => {
         const results = await graphql(schema, '{ planet(planetID: 1) { name }}')
