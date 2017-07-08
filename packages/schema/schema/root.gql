@@ -1,0 +1,8 @@
+interface Node {
+  id: ID!
+}
+
+type RootQuery {
+  allPlanets(offset: Int, limit: Int): [Planet]
+  planet(id: ID, planetID: ID): Planet
+}
