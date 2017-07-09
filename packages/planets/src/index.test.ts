@@ -5,7 +5,7 @@ import * as mocha from 'mocha'
 import { GraphQLSchema, graphql, introspectionQuery } from 'graphql'
 import { addResolveFunctionsToSchema } from 'graphql-tools'
 import { getFetcher } from './connectors/swapi'
-import planetsPlugin from './index'
+import { getSchema as planetsPlugin } from './index'
 
 const fetcher = getFetcher('http://swapi.co/api')
 
