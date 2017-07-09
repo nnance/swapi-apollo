@@ -1,5 +1,5 @@
 {
-  "name": "swapi-apollo-schema",
+  "name": "swapi-apollo-types",
   "version": "0.0.1",
   "description": "The Schema module for Apollo GraphQL SWAPI",
   "main": "./dist/index.js",
@@ -7,6 +7,7 @@
     "build": "tsc",
     "lint": "tslint src/**/*",
     "start": "npm run build && node ./dist/index.js",
+    "clean": "rimraf ./dist",
     "dev": "nodemon ./dist/index.js",
     "test": "npm run build && npm run test:only",
     "test:only": "mocha ./dist/index.test"

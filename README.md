@@ -15,10 +15,13 @@ Uses:
 Install dependencies with
 
 ```sh
-cd ./packages/planets
-npm i && npm run build
-cd ../../
-npm i ./packages/planets
+npm install
+```
+
+Build project
+
+```sh
+npm run build
 ```
 
 ## Local Server

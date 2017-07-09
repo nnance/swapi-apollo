@@ -1,5 +1,5 @@
 import * as request from 'request'
-const DataLoader = require('dataloader')
+import * as DataLoader from 'dataloader'
 
 export interface IFetcher {
   (resource: string): Promise<any>
@@ -22,12 +22,7 @@ export const getFetcher = (rootURL?: string): IFetcher => {
 }
 
 export const getLoader = (fetch: IFetcher) => {
-  return new DataLoader((urls) => {
-      const promises = urls.map((url) => {
-        return fetch(url)
-      })
-      return Promise.all(promises)
-    }, {batch: false})
+  return new DataLoader(urls => Promise.all(urls.map(fetch)), {batch: false})
 }
 
 export const getPageFetcher = (fetch: IFetcher) => (resource: string, offset?: number, limit?: number) => {
