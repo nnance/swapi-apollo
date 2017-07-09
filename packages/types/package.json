@@ -8,7 +8,8 @@
     "lint": "tslint src/**/*",
     "start": "npm run build && node ./dist/index.js",
     "dev": "nodemon ./dist/index.js",
-    "test": "npm run build && mocha ./dist/index.test"
+    "test": "npm run build && npm run test:only",
+    "test:only": "mocha ./dist/index.test"
   },
   "keywords": [
     "Apollo-Stack",
