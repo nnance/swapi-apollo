@@ -27,12 +27,12 @@ const register = (registrations: [IRegisterFunc]): Promise<GraphQLSchema[]> => {
 const loadDocuments = async (): Promise<GraphQLSchema> => {
     const doc = await loadDocument(resolve(__dirname, '..') + '/graphql/*.gql')
     const typesDoc = await typesModule()
-    const planets = await planetsModule(fetcher)
+    const planets = await planetsModule(apiHost)
     return combineDocuments([typesDoc, planets.document, doc])
 }
 
 const loadSchemas = async (loader): Promise<GraphQLSchema> => {
-    const planets = await planetsModule(fetcher)
+    const planets = await planetsModule(apiHost)
     const schema = await loader()
     const resolvers = deepmerge(getResolversWithFetchers(fetcher), planets.resolvers)
     addResolveFunctionsToSchema(schema, resolvers)
