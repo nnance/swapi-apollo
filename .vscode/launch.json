@@ -9,9 +9,23 @@
             "request": "launch",
             "name": "Launch Schema Tests",
             "program": "${workspaceRoot}/node_modules/mocha/bin/_mocha",
-            "args": ["${workspaceRoot}/packages/schema/dist/index.test.js"],
+            "args": ["${workspaceRoot}/packages/types/dist/index.test.js"],
             "outFiles": [
-                "${workspaceRoot}/packages/schema/dist/**/*.js"
+                "${workspaceRoot}/packages/types/dist/**/*.js"
+            ],
+            "sourceMaps": true
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Launch Planet Tests",
+            "program": "${workspaceRoot}/node_modules/mocha/bin/_mocha",
+            "env": {
+                "VCR_MODE": "playback"
+            },
+            "args": ["${workspaceRoot}/packages/planets/dist/index.test.js"],
+            "outFiles": [
+                "${workspaceRoot}/packages/planets/dist/**/*.js"
             ],
             "sourceMaps": true
         },

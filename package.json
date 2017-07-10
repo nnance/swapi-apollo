@@ -8,9 +8,10 @@
     "postinstall": "lerna bootstrap",
     "build": "lerna exec -- npm run build",
     "lint": "tslint src/**/*",
-    "start": "npm run build && node ./dist/index.js",
+    "start": "npm run build && node ./packages/server/dist/index.js",
     "dev": "nodemon ./dist/index.js",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "lerna exec -- npm run test",
+    "clean": "rimraf packages/*/node_modules **/.DS_Store",
     "release": "lerna publish"
   },
   "keywords": [
@@ -26,5 +27,8 @@
     "rimraf": "^2.6.1",
     "tslint": "^5.3.2",
     "typescript": "^2.3.3"
+  },
+  "dependencies": {
+    "graphql": "^0.10.3"
   }
 }
