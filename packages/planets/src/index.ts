@@ -25,4 +25,4 @@ export const getGraphQLModule = async (fetcher: IFetcher): Promise<IGraphQLModul
     return { document, resolvers }
 }
 
-export default (host: string) => getGraphQLModule(getFetcher(host))
+export default ({ host }) => getGraphQLModule(getFetcher(host))

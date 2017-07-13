@@ -7,7 +7,8 @@ import planetsPlugin from './index'
 describe.only('Loading Types Document Tests', () => {
     let doc: DocumentNode
     before(async () => {
-        doc = await planetsPlugin()
+        const gqlModule = await planetsPlugin()
+        doc = gqlModule.document
     })
     it('Document can be loaded', async () => {
         expect(doc).to.exist
