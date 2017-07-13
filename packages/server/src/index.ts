@@ -1,57 +1,26 @@
-import { resolve } from 'path'
-import * as deepmerge from 'deepmerge'
-import { loadSchema, loadDocument, combineDocuments } from '@creditkarma/graphql-loader'
-import { addResolveFunctionsToSchema } from 'graphql-tools'
-import typesModule from 'swapi-apollo-types'
-import planetsModule from 'swapi-apollo-planets'
-import { GraphQLSchema } from 'graphql'
-import getResolversWithFetchers from './resolvers/index'
-import { getFetcher, getLoader, IFetcher } from './connectors/swapi'
+import { GraphQLSchema, DocumentNode } from 'graphql'
 import { startExpress } from './express'
 import { startHapi } from './hapi'
-
+import { getFetcher, getLoader } from './connectors/swapi'
+import registration from './registration'
+import modules from './modules'
 
 const apiHost = process.env.API_HOST ? `${process.env.API_HOST}/api` : 'http://swapi.co/api'
 
 const fetcher = getFetcher(apiHost)
 
-interface IRegisterFunc {
-    (options: IFetcher): Promise<GraphQLSchema>
-}
+const graphqlOptions = (schema: GraphQLSchema) => () => ({
+    pretty: true,
+    schema,
+    context: {
+        loader: getLoader(fetcher),
+    },
+})
 
-const register = (registrations: [IRegisterFunc]): Promise<GraphQLSchema[]> => {
-    const registrationsPromises = registrations.map(mod => mod(fetcher))
-    return Promise.all(registrationsPromises)
-}
-
-const loadDocuments = async (): Promise<GraphQLSchema> => {
-    const doc = await loadDocument(resolve(__dirname, '..') + '/graphql/*.gql')
-    const typesDoc = await typesModule()
-    const planets = await planetsModule(apiHost)
-    return combineDocuments([typesDoc, planets.document, doc])
-}
-
-const loadSchemas = async (loader): Promise<GraphQLSchema> => {
-    const planets = await planetsModule(apiHost)
-    const schema = await loader()
-    const resolvers = deepmerge(getResolversWithFetchers(fetcher), planets.resolvers)
-    addResolveFunctionsToSchema(schema, resolvers)
-    return schema
-}
-
-const graphqlOptions = (schema: GraphQLSchema) => {
-    return () => ({
-        pretty: true,
-        schema,
-        context: {
-            loader: getLoader(fetcher),
-        },
-    })
-}
-
-loadSchemas(loadDocuments).then(schema => {
-    startExpress(graphqlOptions(schema))
-    startHapi(graphqlOptions(schema))
+registration(modules(apiHost)).then(schema => {
+    const options = graphqlOptions(schema)
+    startExpress(options)
+    startHapi(options)
 }).catch(e => {
     console.error(e)
 })
