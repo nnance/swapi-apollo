@@ -2,7 +2,7 @@ import { GraphQLSchema, DocumentNode } from 'graphql'
 import { startExpress } from './express'
 import { startHapi } from './hapi'
 import { getFetcher, getLoader } from './connectors/swapi'
-import registration from './registration'
+import { executableSchemaFromModules } from '@creditkarma/graphql-loader'
 import modules from './modules'
 
 const apiHost = process.env.API_HOST ? `${process.env.API_HOST}/api` : 'http://swapi.co/api'
@@ -17,7 +17,7 @@ const graphqlOptions = (schema: GraphQLSchema) => () => ({
     },
 })
 
-registration(modules(apiHost)).then(schema => {
+executableSchemaFromModules(modules(apiHost)).then(schema => {
     const options = graphqlOptions(schema)
     startExpress(options)
     startHapi(options)
