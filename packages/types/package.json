@@ -21,18 +21,6 @@
   "dependencies": {
     "@creditkarma/graphql-loader": "^0.6.2"
   },
-  "devDependencies": {
-    "@types/chai": "^4.0.0",
-    "@types/graphql": "^0.9.1",
-    "@types/mocha": "^2.2.41",
-    "@types/node": "^8.0.9",
-    "chai": "^4.0.2",
-    "mocha": "^3.4.2",
-    "nodemon": "^1.11.0",
-    "rimraf": "^2.6.1",
-    "tslint": "^5.3.2",
-    "typescript": "^2.3.3"
-  },
   "peerDependencies": {
     "graphql": "^0.10.0"
   }
