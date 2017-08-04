@@ -3,7 +3,6 @@ require('replayer')
 import { expect } from 'chai'
 import * as mocha from 'mocha'
 import { GraphQLSchema, graphql, introspectionQuery } from 'graphql'
-import { addResolveFunctionsToSchema } from 'graphql-tools'
 import { getFetcher } from './connectors/swapi'
 import { getSchema as planetsPlugin } from './index'
 
