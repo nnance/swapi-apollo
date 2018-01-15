@@ -1,23 +1,21 @@
-const id = (species) => species.url
-const averageHeight = (species) => species.average_height
-const skinColors = (species) => species.skin_colors.split(',')
-const hairColors = (species) => species.hair_colors.split(',')
-const eyeColors = (species) => species.eye_colors.split(',')
-const averageLifespan = (species) => species.average_lifespan
-const homeworld = (species, _, context) => context.planet.getConnection(species.homeworld)
-const people = (species, _, context) => context.people.getConnections(species.people)
-const films = (species, _, context) => context.film.getConnections(species.films)
+import { getPageFetcher } from '../connectors/swapi'
 
-export default {
-  Species: {
-    id,
-    averageHeight,
-    skinColors,
-    hairColors,
-    eyeColors,
-    averageLifespan,
-    homeworld,
-    people,
-    films,
+const path = '/species/'
+
+export default (fetch) => ({
+  RootQuery: {
+      allSpecies: (_, params) => getPageFetcher(fetch)(path, params.offset, params.limit),
+      species: (_, params) => fetch(params.id || `${path}${params.speciesID}/`),
   },
-}
+  Species: {
+    id: (species) => species.url,
+    averageHeight: (species) => species.average_height,
+    skinColors: (species) => species.skin_colors.split(','),
+    hairColors: (species) => species.hair_colors.split(','),
+    eyeColors: (species) => species.eye_colors.split(','),
+    averageLifespan: (species) => species.average_lifespan,
+    homeworld: (species, _, context) => context.loader.loadMany(species.homeworld),
+    people: (species, _, context) => context.loader.loadMany(species.people),
+    films: (species, _, context) => context.loader.loadMany(species.films),
+  },
+})

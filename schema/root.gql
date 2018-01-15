@@ -1,5 +1,3 @@
-export default `
-
 interface Node {
   id: ID!
 }
@@ -19,5 +17,3 @@ type RootQuery {
   vehicle(id: ID, vehicleID: ID): Vehicle
   node(id: ID!): Node
 }
-
-`

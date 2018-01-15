@@ -1,23 +1,30 @@
-const id = (film) => film.url
-const episodeID = (film) => film.episode_id
-const openingCrawl = (film) => film.opening_crawl
-const releaseDate = (film) => film.release_date
-const species = (film, _, context) => context.species.getConnections(film.species)
-const starships = (film, _, context) => context.starship.getConnections(film.starships)
-const vehicles = (film, _, context) => context.vehicle.getConnections(film.vehicles)
-const characters = (film, _, context) => context.people.getConnections(film.characters)
-const planets = (film, _, context) => context.planet.getConnections(film.planets)
+import { getPageFetcher } from '../connectors/swapi'
 
-export default {
-  Film: {
-    id,
-    episodeID,
-    openingCrawl,
-    releaseDate,
-    species,
-    starships,
-    vehicles,
-    characters,
-    planets,
+const path = '/films/'
+
+export default (fetch) => ({
+  RootQuery: {
+      allFilms: (_, params) => getPageFetcher(fetch)(path, params.offset, params.limit),
+      film: (_, params) => fetch(params.id || `${path}${params.filmID}/`),
   },
-}
+  Film: {
+    id: (film) => film.url,
+    episodeID: (film) => film.episode_id,
+    openingCrawl: (film) => film.opening_crawl,
+    releaseDate: (film) => film.release_date,
+    details: (film) => ({
+      species: film.species,
+      starships: film.starships,
+      vehicles: film.vehicles,
+      characters: film.characters,
+      planets: film.planets,
+    }),
+  },
+  FilmDetails: {
+    species: (details, _, context) => context.loader.loadMany(details.species),
+    starships: (details, _, context) => context.loader.loadMany(details.starships),
+    vehicles: (details, _, context) => context.loader.loadMany(details.vehicles),
+    characters: (details, _, context) => context.loader.loadMany(details.characters),
+    planets: (details, _, context) => context.loader.loadMany(details.planets),
+  },
+})
