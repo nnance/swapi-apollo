@@ -7,10 +7,35 @@
         {
             "type": "node",
             "request": "launch",
-            "name": "Launch Program",
-            "program": "${workspaceRoot}/dist/index.js",
+            "name": "Launch Schema Tests",
+            "program": "${workspaceRoot}/node_modules/mocha/bin/_mocha",
+            "args": ["${workspaceRoot}/packages/types/dist/index.test.js"],
             "outFiles": [
-                "${workspaceRoot}/dist/**/*.js"
+                "${workspaceRoot}/packages/types/dist/**/*.js"
+            ],
+            "sourceMaps": true
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Launch Planet Tests",
+            "program": "${workspaceRoot}/node_modules/mocha/bin/_mocha",
+            "env": {
+                "VCR_MODE": "playback"
+            },
+            "args": ["${workspaceRoot}/packages/planets/dist/index.test.js"],
+            "outFiles": [
+                "${workspaceRoot}/packages/planets/dist/**/*.js"
+            ],
+            "sourceMaps": true
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Launch Program",
+            "program": "${workspaceRoot}/packages/server/dist/index.js",
+            "outFiles": [
+                "${workspaceRoot}/packages/server/dist/**/*.js"
             ],
             "sourceMaps": true
         }

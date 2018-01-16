@@ -1,0 +1,27 @@
+{
+  "statusCode": 200,
+  "headers": {
+    "date": "Tue, 20 Jun 2017 04:21:54 GMT",
+    "content-type": "application/json",
+    "transfer-encoding": "chunked",
+    "connection": "keep-alive",
+    "set-cookie": [
+      "__cfduid=dc98901c383de3f9fdfd864fb9ee02b441497932514; expires=Wed, 20-Jun-18 04:21:54 GMT; path=/; domain=.swapi.co; HttpOnly"
+    ],
+    "etag": "\"58f73206065c70522cf4ce6ffda4ba7f\"",
+    "vary": "Accept, Cookie",
+    "allow": "GET, HEAD, OPTIONS",
+    "x-frame-options": "SAMEORIGIN",
+    "via": "1.1 vegur",
+    "server": "cloudflare-nginx",
+    "cf-ray": "371bf1a4f1da6e62-SJC"
+  },
+  "url": "http://swapi.co:80/api/planets/?page=2",
+  "time": 303,
+  "request": {
+    "method": "GET",
+    "headers": {
+      "host": "swapi.co"
+    }
+  }
+}

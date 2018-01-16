@@ -18,6 +18,12 @@ Install dependencies with
 npm install
 ```
 
+Build project
+
+```sh
+npm run build
+```
+
 ## Local Server
 
 A local server is in `./src`. It can be run with:

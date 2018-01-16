@@ -1,0 +1,35 @@
+{
+  "name": "swapi-apollo",
+  "version": "0.0.1",
+  "description": "An Apollo server wrapping SWAPI",
+  "main": "./dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "lint": "tslint src/**/*",
+    "start": "npm run build && node ./dist/index.js",
+    "dev": "nodemon ./dist/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "Apollo-Stack",
+    "GraphQL"
+  ],
+  "author": "Nick Nance",
+  "license": "ISC",
+  "dependencies": {
+    "@creditkarma/graphql-loader": "^0.7.0",
+    "body-parser": "^1.18.2",
+    "dataloader": "^1.3.0",
+    "express": "^4.16.2",
+    "graphql-server-express": "^1.3.2",
+    "graphql-server-hapi": "^1.3.2",
+    "graphql-tools": "^2.18.0",
+    "hapi": "^17.2.0",
+    "request": "^2.83.0",
+    "swapi-apollo-planets": "^0.0.1",
+    "swapi-apollo-types": "^0.0.1"
+  },
+  "peerDependencies": {
+    "graphql": "^0.11.0"
+  }
+}

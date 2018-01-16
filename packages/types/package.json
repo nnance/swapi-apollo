@@ -1,0 +1,27 @@
+{
+  "name": "swapi-apollo-types",
+  "version": "0.0.1",
+  "description": "The Schema module for Apollo GraphQL SWAPI",
+  "main": "./dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "lint": "tslint src/**/*",
+    "start": "npm run build && node ./dist/index.js",
+    "clean": "rimraf ./dist",
+    "dev": "nodemon ./dist/index.js",
+    "test": "npm run build && npm run test:only",
+    "test:only": "mocha ./dist/index.test"
+  },
+  "keywords": [
+    "Apollo-Stack",
+    "GraphQL"
+  ],
+  "author": "Nick Nance",
+  "license": "ISC",
+  "dependencies": {
+    "@creditkarma/graphql-loader": "^0.7.0"
+  },
+  "peerDependencies": {
+    "graphql": "^0.11.0"
+  }
+}
