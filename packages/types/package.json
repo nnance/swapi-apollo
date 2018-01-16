@@ -19,9 +19,9 @@
   "author": "Nick Nance",
   "license": "ISC",
   "dependencies": {
-    "@creditkarma/graphql-loader": "^0.6.2"
+    "@creditkarma/graphql-loader": "^0.7.0"
   },
   "peerDependencies": {
-    "graphql": "^0.10.0"
+    "graphql": "^0.11.0"
   }
 }
