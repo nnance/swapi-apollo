@@ -27,6 +27,24 @@ export async function startHapi(graphqlOptions) {
       plugin: apollo.graphiqlHapi,
   })
 
+  await server.register({
+    plugin: require('good'),
+    options: {
+        includes: {
+            response: [ 'payload' ],
+        },
+        reporters: {
+            console: [{
+                module: 'good-squeeze',
+                name: 'Squeeze',
+                args: [{ log: '*', response: '*' }],
+            }, {
+                module: 'good-console',
+            }, 'stdout'],
+        },
+    },
+  })
+
   await server.start()
   console.log(`HAPI server is listen on ${hapiPort}`)
   console.log(`open browser to http://localhost:${hapiPort}`)
