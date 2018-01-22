@@ -1,33 +1,36 @@
 import * as hapi from 'hapi'
-import * as apollo from 'graphql-server-hapi'
+import {graphiqlHapi, graphqlHapi} from 'apollo-server-hapi'
 
 const hapiPort = process.env.HAPI_PORT || 8000
 
-export async function startHapi(graphqlOptions) {
-  const server = new hapi.Server({
-      host: 'localhost',
-      port: hapiPort,
-  })
+export function startHapi(graphqlOptions) {
+    const server = new hapi.Server()
 
-  await server.register({
-      options: {
-          graphqlOptions,
-          path: '/graphql',
-      },
-      plugin: apollo.graphqlHapi,
-  })
+    server.connection({
+        host: 'localhost',
+        port: hapiPort,
+    })
 
-  await server.register({
-      options: {
-          graphiqlOptions: {
-              endpointURL: '/graphql',
-          },
-          path: '/',
-      },
-      plugin: apollo.graphiqlHapi,
-  })
+    server.register({
+        options: {
+            graphqlOptions: graphqlOptions,
+            path: '/graphql',
+        },
+        register: graphqlHapi,
+    })
 
-  await server.start()
-  console.log(`HAPI server is listen on ${hapiPort}`)
-  console.log(`open browser to http://localhost:${hapiPort}`)
-}
+    server.register({
+        options: {
+            graphiqlOptions: {
+                endpointURL: '/graphql',
+            },
+            path: '/',
+        },
+        register: graphiqlHapi,
+    })
+
+    server.start(() => {
+      console.log(`HAPI server is listen on ${hapiPort}`)
+      console.log(`open browser to http://localhost:${hapiPort}`)
+    })
+  }
