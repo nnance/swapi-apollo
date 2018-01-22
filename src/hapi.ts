@@ -3,12 +3,28 @@ import {graphiqlHapi, graphqlHapi} from 'apollo-server-hapi'
 
 const hapiPort = process.env.HAPI_PORT || 8000
 
+const {Tracer, ExplicitContext, ConsoleRecorder} = require('zipkin')
+const zipkinMiddleware = require('zipkin-instrumentation-hapi').hapiMiddleware
+
+const ctxImpl = new ExplicitContext()
+const recorder = new ConsoleRecorder()
+
+const localServiceName = 'swapi-apollo' // name of this application
+const tracer = new Tracer({ctxImpl, recorder, localServiceName})
+
+
 export function startHapi(graphqlOptions) {
     const server = new hapi.Server()
 
     server.connection({
         host: 'localhost',
         port: hapiPort,
+    })
+
+    // Add the Zipkin middleware
+    server.register({
+        register: zipkinMiddleware,
+        options: {tracer},
     })
 
     server.register({
