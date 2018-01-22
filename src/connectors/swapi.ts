@@ -1,19 +1,23 @@
 import * as request from 'request'
+import {tracer} from '../observability/zipkin'
 const DataLoader = require('dataloader')
+
+const wrapRequest = require('zipkin-instrumentation-request')
+const zipkinRequest = wrapRequest(request, {tracer, remoteServiceName: 'swapi'})
 
 export interface IFetcher {
   (resource: string): Promise<any>
 }
 
 export const getFetcher = (rootURL?: string): IFetcher => {
-  const apiRoot = rootURL || 'http://swapi.co/api'
+  const apiRoot = rootURL || 'https://swapi.co/api'
 
   return (resource: string): Promise<any> => {
     const url = resource.indexOf(apiRoot) === 0 ? resource : apiRoot + resource
 
     return new Promise<any>((resolve, reject) => {
       console.log(`fetch: ${url}`)
-      request.get(url, (err, resp, body) => {
+      zipkinRequest.get(url, (err, resp, body) => {
         console.log(`fetch: ${url} completed`)
         err ? reject(err) : resolve(JSON.parse(body))
       })
@@ -23,9 +27,7 @@ export const getFetcher = (rootURL?: string): IFetcher => {
 
 export const getLoader = (fetch: IFetcher) => {
   return new DataLoader((urls) => {
-      const promises = urls.map((url) => {
-        return fetch(url)
-      })
+      const promises = urls.map((url) => fetch(url))
       return Promise.all(promises)
     }, {batch: false})
 }

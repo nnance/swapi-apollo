@@ -25,6 +25,9 @@ export default (fetch) => ({
     starships: (details, _, context) => context.loader.loadMany(details.starships),
     vehicles: (details, _, context) => context.loader.loadMany(details.vehicles),
     characters: (details, _, context) => context.loader.loadMany(details.characters),
-    planets: (details, _, context) => context.loader.loadMany(details.planets),
+    planets: (details, _, context) => {
+      console.dir(details)
+      context.loader.loadMany(details.planets)
+    },
   },
 })

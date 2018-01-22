@@ -7,7 +7,7 @@ import { startExpress } from './express'
 import { startHapi } from './hapi'
 
 
-const apiHost = process.env.API_HOST ? `${process.env.API_HOST}/api` : 'http://swapi.co/api'
+const apiHost = process.env.API_HOST ? `${process.env.API_HOST}/api` : 'https://swapi.co/api'
 
 const fetcher = getFetcher(apiHost)
 
