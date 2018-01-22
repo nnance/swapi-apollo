@@ -15,10 +15,13 @@ export function startHapi(graphqlOptions) {
     })
 
     // Add the Zipkin middleware
-    server.register({
-        register: zipkinMiddleware,
-        options: {tracer},
-    })
+    if (process.env.ZIPKIN || process.env.ZIPKIN_HOST) {
+        console.log('Zipkin Enabled')
+        server.register({
+            register: zipkinMiddleware,
+            options: {tracer},
+        })
+    }
 
     server.register({
         options: {

@@ -16,9 +16,7 @@ export const getFetcher = (rootURL?: string): IFetcher => {
     const url = resource.indexOf(apiRoot) === 0 ? resource : apiRoot + resource
 
     return new Promise<any>((resolve, reject) => {
-      console.log(`fetch: ${url}`)
       zipkinRequest.get(url, (err, resp, body) => {
-        console.log(`fetch: ${url} completed`)
         err ? reject(err) : resolve(JSON.parse(body))
       })
     })
