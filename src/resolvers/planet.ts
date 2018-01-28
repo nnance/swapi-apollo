@@ -1,11 +1,11 @@
-import { getPageFetcher } from '../connectors/swapi'
-
 const path = '/planets/'
 
-export default (fetch) => ({
+export default () => ({
   RootQuery: {
-      allPlanets: (_, params) => getPageFetcher(fetch)(path, params.offset, params.limit),
-      planet: (_, params) => fetch(params.id || `${path}${params.planetID}/`),
+      allPlanets: (_, params, context) =>
+        context.pageFetcher(path, params.offset, params.limit),
+      planet: (_, params, context) =>
+        context.fetcher(params.id || `${path}${params.planetID}/`),
   },
   Planet: {
     id: (planet) => planet.url,

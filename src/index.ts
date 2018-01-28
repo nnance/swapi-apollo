@@ -2,7 +2,7 @@ import { loadSchema } from '@creditkarma/graphql-loader'
 import { addResolveFunctionsToSchema } from 'graphql-tools'
 import { GraphQLSchema } from 'graphql'
 import getResolversWithFetchers from './resolvers/index'
-import { getFetcher, getLoader } from './connectors/swapi'
+import { getFetcher, getLoader, getPageFetcher } from './connectors/swapi'
 import { startExpress } from './express'
 import { startHapi } from './hapi'
 
@@ -11,19 +11,19 @@ const apiHost = process.env.API_HOST ? `${process.env.API_HOST}/api` : 'https://
 
 const fetcher = getFetcher(apiHost)
 
-const graphqlOptions = (schema: GraphQLSchema) => {
-    return () => ({
-        pretty: true,
-        schema,
-        context: {
-            loader: getLoader(fetcher),
-        },
-    })
-}
+const graphqlOptions = (schema: GraphQLSchema) => (request) => ({
+    pretty: true,
+    schema,
+    context: {
+        loader: getLoader(fetcher(request.plugins.zipkin)),
+        pageFetcher: getPageFetcher(fetcher(request.plugins.zipkin)),
+        fetcher: fetcher(request.plugins.zipkin),
+    },
+})
 
 loadSchema('./schema/*.gql')
     .then(schema => {
-        const resolvers = getResolversWithFetchers(fetcher)
+        const resolvers = getResolversWithFetchers()
 
         addResolveFunctionsToSchema(schema, resolvers)
         startExpress(graphqlOptions(schema))

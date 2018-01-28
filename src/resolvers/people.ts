@@ -1,11 +1,11 @@
-import { getPageFetcher } from '../connectors/swapi'
-
 const path = '/people/'
 
-export default (fetch) => ({
+export default () => ({
   RootQuery: {
-      allPeople: (_, params) => getPageFetcher(fetch)(path, params.offset, params.limit),
-      person: (_, params) => fetch(params.id || `${path}${params.personID}/`),
+      allPeople: (_, params, context) =>
+        context.pageFetcher(path, params.offset, params.limit),
+      person: (_, params, context) =>
+        context.fetcher(params.id || `${path}${params.personID}/`),
   },
   Person: {
     id: (person) => person.url,
