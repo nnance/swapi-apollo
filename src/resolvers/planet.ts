@@ -5,7 +5,7 @@ export default () => ({
       allPlanets: (_, params, context) =>
         context.pageFetcher(path, params.offset, params.limit),
       planet: (_, params, context) =>
-        context.fetcher(params.id || `${path}${params.planetID}/`),
+        context.loader.load(params.id || `${path}${params.planetID}/`),
   },
   Planet: {
     id: (planet) => planet.url,

@@ -5,18 +5,14 @@ const DataLoader = require('dataloader')
 import {TraceId} from 'zipkin'
 const wrapRequest = require('zipkin-instrumentation-request')
 
-export interface IFetcherWithTracer {
+export interface IFetcher {
   (resource: string): Promise<any>
 }
 
-export interface IFetcher {
-  (traceId: TraceId): IFetcherWithTracer
-}
-
-export const getFetcher = (rootURL?: string): IFetcher => {
+export const getFetcher = (rootURL?: string, traceId?: TraceId): IFetcher => {
   const apiRoot = rootURL || 'https://swapi.co/api'
 
-  return (traceId: TraceId): IFetcherWithTracer => (resource: string): Promise<any> => {
+  return (resource: string): Promise<any> => {
     const url = resource.indexOf(apiRoot) === 0 ? resource : apiRoot + resource
 
     const tracer = getTracer(traceId)
@@ -29,14 +25,14 @@ export const getFetcher = (rootURL?: string): IFetcher => {
   }
 }
 
-export const getLoader = (fetch: IFetcherWithTracer) => {
+export const getLoader = (fetch: IFetcher) => {
   return new DataLoader((urls) => {
       const promises = urls.map((url) => fetch(url))
       return Promise.all(promises)
     }, {batch: false})
 }
 
-export const getPageFetcher = (fetch: IFetcherWithTracer) => (resource: string, offset?: number, limit?: number) => {
+export const getPageFetcher = (fetch: IFetcher) => (resource: string, offset?: number, limit?: number) => {
   let results = []
   let index = 0
   const size = limit || 0

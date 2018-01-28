@@ -5,7 +5,7 @@ export default () => ({
       allPeople: (_, params, context) =>
         context.pageFetcher(path, params.offset, params.limit),
       person: (_, params, context) =>
-        context.fetcher(params.id || `${path}${params.personID}/`),
+        context.loader.load(params.id || `${path}${params.personID}/`),
   },
   Person: {
     id: (person) => person.url,

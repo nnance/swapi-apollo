@@ -5,7 +5,7 @@ export default () => ({
       allFilms: (_, params, context) =>
         context.pageFetcher(path, params.offset, params.limit),
       film: (_, params, context) =>
-        context.fetcher(params.id || `${path}${params.filmID}/`),
+        context.loader.load(params.id || `${path}${params.filmID}/`),
   },
   Film: {
     id: (film) => film.url,

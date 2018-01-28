@@ -5,7 +5,7 @@ export default () => ({
       allVehicles: (_, params, context) =>
         context.pageFetcher(path, params.offset, params.limit),
       vehicle: (_, params, context) =>
-        context.fetcher(params.id || `${path}${params.vehicleID}/`),
+        context.loader.load(params.id || `${path}${params.vehicleID}/`),
   },
   Vehicle: {
     id: (vehicle) => vehicle.url,

@@ -5,7 +5,7 @@ export default () => ({
       allStarships: (_, params, context) =>
         context.pageFetcher(path, params.offset, params.limit),
       starship: (_, params, context) =>
-        context.fetcher(params.id || `${path}${params.starshipID}/`),
+        context.loader.load(params.id || `${path}${params.starshipID}/`),
   },
   Starship: {
     id: (starship) => starship.url,

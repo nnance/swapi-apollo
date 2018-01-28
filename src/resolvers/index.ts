@@ -5,7 +5,7 @@ import species from './species'
 import starship from './starship'
 import vehicle from './vehicle'
 
-export default () => Object.assign(
+export default Object.assign(
     {},
     film(),
     people(),

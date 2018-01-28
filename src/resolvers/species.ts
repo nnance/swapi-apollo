@@ -5,7 +5,7 @@ export default () => ({
       allSpecies: (_, params, context) =>
         context.pageFetcher(path, params.offset, params.limit),
       species: (_, params, context) =>
-        context.fetcher(params.id || `${path}${params.speciesID}/`),
+        context.loader.load(params.id || `${path}${params.speciesID}/`),
   },
   Species: {
     id: (species) => species.url,
