@@ -20,9 +20,11 @@ const graphqlOptions = (schema: GraphQLSchema) => (request) => {
     }
 }
 
-loadSchema('./schema/*.gql')
-    .then(schema => {
-        addResolveFunctionsToSchema(schema, resolvers)
-        startExpress(graphqlOptions(schema))
-        startHapi(graphqlOptions(schema))
-    })
+const main = async () => {
+    const schema = await loadSchema('./schema/*.gql')
+    addResolveFunctionsToSchema(schema, resolvers)
+    startExpress(graphqlOptions(schema))
+    startHapi(graphqlOptions(schema))
+}
+
+main()

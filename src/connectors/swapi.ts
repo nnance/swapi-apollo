@@ -15,7 +15,7 @@ export const getFetcher = (rootURL?: string, traceId?: TraceId): IFetcher => {
   return (resource: string): Promise<any> => {
     const url = resource.indexOf(apiRoot) === 0 ? resource : apiRoot + resource
 
-    const tracer = getTracer(traceId)
+    const tracer = getTracer(traceId, {localServiceName: 'swapi'})
     const zipkinRequest = wrapRequest(request, {tracer, remoteServiceName: 'swapi'})
     return new Promise<any>((resolve, reject) => {
       zipkinRequest.get(url, (err, resp, body) => {
